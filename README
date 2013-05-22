@@ -1,0 +1,20 @@
+Here is the code for my second attempt at a game.
+My last attempt went well, but I did hit some snags for sure.
+
+This time I elevated the bar even more.
+I really should just make an easier game but this is more fun.
+
+My goal here was to challenge myself by sticking to the "no complex libraries" rule
+and to do so with opengl.
+
+I've mostly stuck to that...
+I'm using LWJGL for my opengl implementation.
+Slick-2D for some various image related type things.
+Truetype fonts were just too good to pass up. 
+Using google GSON for smexy json usage
+
+Anyway, the idea here is to create a mostly-lightweight 2D game
+featuring 3D graphics. All graphics created in blender and/or gimp
+if not pure code.
+
+This is pretty ameteur, so be nice and enjoy.

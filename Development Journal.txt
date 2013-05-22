@@ -1,0 +1,488 @@
+04-03-2013
+I've learned a lot starting this game.
+Some things I made, that I had never previously done.
+Created a XML parser to load levels.
+Created a Wavefront .obj Loader. Very awesome when I could see it in action.
+Created a way to load and read zip files
+Gave up on reading a zip-within-zip... ZipFile seems constrained to File objects :/
+Loaded and parsed XML file within a zip file. yaay
+
+04-05-2013
+Now today I got somewhat concerned.
+You see, ive been developing this method to store stuff in xml and zip files.
+So for instance my title screen is solely defined in an xml file instead of creating 
+a TitleScreen object in java. I can create a new instance of GuiScreen.
+I feel this is more proper object oriented programming.
+Well, I had just finished parsing buttons, and realized I have no way of assigning actions to buttons without defining a
+new object that holds actions for those..
+
+I scoured the jre source looking for a solution, and derped around for a while trying to get loading .java files in.
+Then I remembered computercraft from minecraft. It uses LuaJ, which allows you to run lua scripts in java.
+So I seperated it from the computercraft mod and repacked it (woot jarsplice) to use as a library in eclipse.
+So now I can create action files for buttons and any other controls, and have java simply call the action file assigned to the gui object.
+
+So i'm planning something like this:
+
+void GuiScreen.buttonClicked(Gui button)
+{
+	String actionFile = actionsList.get( button.getID() );
+	String response = nocare.util.lua.Lua.getEval(actionFile);
+}
+
+This still leaves a problem for gui objects that may have very special functions.
+A lot of things I still have to think on with this.
+I'm still working on the gui-from-xml builder, so I have not even built one [Gui] in openGL yet.
+
+04-08-2013
+Well I've got the guiLoader pretty much done. Still have more refining to do.
+Spent a TON of time figuring out how to make a font. Created a font.png and finally got it working.
+It's... neat, but its going to require a whole lot of refining to get to an acceptable state.
+So much I probably will not bother.
+
+Going to try out Slick-util's TrueType fonts. They have more resource overhead, but it should save me a lot of hassle
+
+04-9-2013
+So got slick's truetype font working. It was depreciated, so switched to it's unicodeFont.
+It's not perfect, there are clear artifacts when blending. Will have to save solving that until I can ask online.
+Preparing for handling gui input now :D
+I wrote an Interface for Gui that lets me call mouse event functions.
+Then I wrote a MouseListener that delegates mouse events to those functions.
+It was actually really cool the way I figured out how to do it.
+so if you go "(Object instanceof Interface)", and the object implements said interface, it will return true! Awesome.
+Furthering that, you can type cast to that interface.
+
+So for example
+
+if ( guiObjects.get( i ) instanceof IGuiMouseActions )
+{
+	IGuiMouseActions gui = ( IGuiMouseActions ) guiObjects.get( i );
+	gui.mouseClicked( button, Mouse.getX(), Mouse.getY() );
+}
+
+The object I pull out of the arrayList (guiObjects) is actually a GuiButton, but because
+it implements the IGuiMouseActions, I can cast to that interface and call that function,
+and it will send to the function I have in GuiButton.
+Brilliant. I'm just so excited over this new found language mechanic.
+
+Its got me a bit nostalgic. When I last attempted to make a game, I created this GIANT
+polymorphic method to handle firing off different spell types.
+One might be a projectile, another a melee attack.
+The only similarity between the objects were the values passed in the constructor.
+So I ended up using java.lang.Reflect and creating like a generic object and testing, etc.
+It worked but would get crazier with every new spell. 
+An interface and some filtering like I discovered today would have been able to resolve that much better.
+
+In fact I still didn't find much use for interfaces until just today. I've only been using them in place or in addition to abstract classes where
+different class heirierchies would use similiar variables.
+Gui's and Entity types both have positional values for instance,
+so an interface with those get/set methods makes things nice.
+More important, it ensures those method names are following a standard throughout the program.
+getX(), getPosX(), etc.
+Enough code into a project and your mindset changes. The way you solve problems, and the types of solutions you arrive at differ.
+But I digress.
+
+Using interfaces to interact with identical functions of any amount of unique object types can prevent spaghetti code :D
+
+4-10-2013
+More work on gui's today. Getting very close to getting passed title screen and actually making the game. Quite a lot of work just on gui and
+other pre-work. I mean I've already got the code written for importing and rendering 3d models, cant wait to put that to applicable work :D
+So the mouse actions on buttons is pretty solid now. Refined a bit and it should only fire off stuff when mouse actions actually happen.
+Doubt I am finished though. 
+Wrote the functionality into GuiScreen to pull gui events from it's associated lua file.
+I'll have to append it later on as I add more gui objects.
+
+I have it pull a string response for the button from lua, and pass it to App, which sorts it and sends it to it's appropriate handler.
+For instance, the title screen's main purpose is to enter different states of the game.
+So the button may Return StateMachine.StartGame and that is very easy to sort with java.
+Just split the string and use a switch on the first part of the string.
+Actually, I am very glad about JDK7 finally implementing String switches.
+A year or so ago I was taken by surprise when I found I could not use a switch with strings, haha.
+Had to create long IF statements
+
+"if (String.equals(string))"
+
+That get's quite messy when you have a large number of options.
+
+My last game attempt, I did indeed get quite far. Hell, I hadn't ever made a java program from scratch and there I was trying to make a game,
+without an internet connection for research. I got very far. 
+I had a tile map, map loading, two different maps and a portal to travel to them.
+I had randomly respawning mobs with AI walking patters (and jumping :D ), and I had a full stats and leveling system
+to go with the player. Not bad for a first game attempt.
+
+So I certainly hope to get farther this time. I've severely upped the anti here though. Instead of using Swing/JFrame, I decided to
+full on dive into OpenGL. It's taken a lot of time to wrap my head around things, and I havent even gotten to the game yet... haha.
+I can't wait.
+Though with LWJGL, I will say creating my engine structure base was far simpler than with jframe. Perhaps because I had spent so much
+time on it beforehand.
+I have a pretty good vision on my platform. I want to limit the amount of game/gui things that are hard coded into java.
+This is why i've spent so much time working on xml parsing and calling to lua functions.
+When I release the game, this will allow for people that own to the game to mod it quite well up to a point, without ever running a compiler.
+
+If all goes well, even up to the point of adding new mobs, items, and attacks. Hell even loading your own music could be fun.
+
+Speaking of music, I've got a fair bit of tools for creating it. THAT is a whole other monster to tackle however, and i'm sure I will
+write all about it. 
+
+It literally took 5 minutes to write my state machine and link to my lua commands. I'm gettin good :]
+
+4-12-2013
+It is a firm belief of mine that buttons in a gui must change in some fashion when the cursor moves over them. Just finished mine.
+It's one of those finishing touches I cannot live without.
+
+4-14-2013
+I've spent the last couple of days trying to make hair... of all things. I finally got a good particle hair in blender, and applied a coloring to it I liked.
+I rendered both sides, back, front, and top in extremely high resolution (~ 3k x 2k), each taking over an hour and sometimes many.
+This left me with several high quality images with multiple paths, colors, lighting and textures of hair that I can use.
+The next step is to add textured planes to my base mesh head, and add portions of these images at lower resolution.
+I should then be able to combine the textures, into one image file! If you've ever ripped open texture files for 3d games you'd see what looks like someone took an exact-o knife
+and carefully unwrapped the character, like origami!
+And that is essentially it. You don't start out like that, but tools allow you to make such a highly compressed image. 
+so that is the plan, and it should allow for hair that is both able to be animated, as well as composed of a relatively low polygon count.
+I'd love to be able to use the particle hair, but the most my gpu could manage in a game setting would be 10-100 really thick spaghetti noodles, and an otherwise bald character, ahaha.
+
+So once I have my planes in place, I have a couple of routes I can go for display in my game. So the easy, less nice way would be to keep the singular planes, set their pivot point to the roots(scalp)
+and let my game engine handle calculating real-time hair movement, which does sound pretty cool.
+
+The other option I can think of, is to spend a lot of time in blender, which I will in any case. 
+My character needs animation's worked out, so with the hair in place, I can subdivide it a few times and apply a subsurf and cloth modifier to the hair.
+This allows for more dynamic hair topology (1 plane waving in 3+ directions?), but also save my game engine from calculating the dynamic flow and collision of the hair,
+which would undoubtidly kill frame rates. This does severely increase the vertice count and consequently amount of placement calculations my engine will need to do.
+But the quality would most certainly be much higher. 
+
+Perhaps I will save that idea for more visually demanding moments (for the person playing the game) such as cut scenes if I make them.
+I will definitely attempt it and compare frame rates, because it sounds genious if I you don't mind me being a little arrogant.
+
+I know Final Fantasy 13 use mere planes for hair, and the hair in that game was certainly wonderful. A multitude of image planes is definitely better than a single "wig" mesh that is textured.
+
+Well, with all this talk about hair you may be wondering, "why all the fuss, its just hair?" Well.... Carefull study had me come to the realization that hair is extremely important and additionally 
+incredibly difficult to achieve perfectly. For one, even at the thinnest settings in blender, your still miles away from an identical thickness to human hair. It is incredibly thin, and also very much
+translucent. It is the careful application of probably millions that add up and result in a thick complex looking potpouri. So the idea is to use textures of many hundred hairs layered over eachother
+to attempt to make a similiar effect, while also taking to heart the limititations of the computer.
+
+So I don't want my character bald, and and I don't want her wearing a wig. We'll see what happens. If I do any pre-rendered cut scenes (I hope to!) I will definitely use particle hair, as
+it is so lovely.
+
+4-15-2013
+Sitting here preparing to start actual game stuff, level loading and such.
+Well my main focus is to figure out and understand how to position everything. Logically its all 2D, and easy to handle.
+But the graphics are 3D, so the mere action of placing them is difficult, and harder to replicate.
+I found that if I make my scene backdrop model about 2 blender units tall, and a 30Degree Field of Vision on my persepective view, it works.
+But that also means my character needs to be like 0.2 blender units tall -.-
+
+So my character is 2 Blender Units (hereby called BU's), and her scale relative to my scene, puts my backdrop to about 8 BUs tall.
+My FoV angle needs to be 38degrees, and I have to translate the scene (4, -4, -10) to get the angle of view on the scene I want.
+
+So looking at the inside of a cube, the left wall is perfectly straight and the right wall is angled. I can't really describe it, but its the typical
+perspective people draw when asked to draw a 3d wireframe cube on paper. At least from what I've scene.
+
+Its the perspective I dreamed of and even drew in my notebook.. closest thing to a full game plan I have.
+I am happy.
+
+Now I need only to figure out how to translate all of this. without losing my setup. Right now, for whatever reason opengl is using the very
+center of the screen as 0,0 and I had been under the impression that the lower left was 0,0 :/
+I would really prefer to not have to muk around with negative coordinate spaces.
+
+Thanks to the 100gb or so of tutorials (many are for blender and video), I can see that I need to move my object in a world matrix.
+So what I see is the screen/projection, lower still is the world matrix, which holds the position of everything, including camera.
+Right now i'm working in the model matrix for positioning, so I need to actually position it in the world matrix.
+Funny note, the tutorial I'm reading on this specifically states:
+"This is the single most important tutorial of the whole set. Be sure to read it at least eight times."
+Haha.
+
+Oh boy, so what little research I could do proved insightful, but of no help. I started poking around code, and found the solution.
+My level class is where models are actually called to be rendered, as each level object holds any number of models.
+So what I did was just make a call to glTranslateF, and was easily able to add in a camera value for that. I'll tie that into the player later.
+The main thing I was overlooking was the fact my models have position values. -.-
+Its been a couple weeks since I touched the class. I actually wrote a function within the class for translating the vertices AND
+calculated moving a couple objects (3 scene tiles to be exact) so I could see the objects in different positions.
+Anyway, the functionality of translating the object based on its position was already there.. haha.
+
+Now I get to design my first level. It will be a mostly short one, so hopefully I dont go too crazy with designing it.
+
+04-18-2013
+Refactored models in general. I added the ability to load material info into the model from an .mtl file. I hope to be able to use it...
+So I have to setup the lighting and such for each Material. It would seem that this requires FloatBuffer objects, which apparently are incredibly 
+resource intensive to create. And I hope only to create and not merely access.
+
+So creating and using the FloatBuffer on each loop cycle, for each face based on its material has proven incredibly resource intensive.
+So I will attempt to modify my materials to create these objects and then call to them during render. This is generally always a better option in
+any case but is definitely coding overhead. Guess I'm no stranger to that.
+
+I was right. Creating FloatBuffer's is resource intensive, but accessing them isn't.
+Now, importing the color values from my .mtl's that blender exports was interesting to figure out.
+
+So I have this yellow-ish material right. 
+
+RGB is 231,231,0.
+mtl is 0.639282 0.639282 0.000000
+
+Just a wtf moment here. It took some testing, but I soon realized that I need to modify this value.
+
+mtl * 361.3428815452336f =  RGB value
+
+Weird right? Some research to be done.....
+
+Then to use with opengl, I only need to divide by 255f to get my 0.0f-1.0f range.
+
+I was quite skeptical about this working until I used a few colors and ran it. It's really going to bug me for a while.
+Now since my first scene has like flourescent lights, I need to figure out emission in opengl.
+In fact blender does not even export it to the .mtl...... oh boy.
+Well, once I got emission working in opengl (so cool), I decided to invesitigate the obj exporter plugin.
+I found its code, quite nice of blender to point me directly to it :D
+It had nothing as far as emit values go for exporting to the .mtl file. Though honestly adding it was easy.
+
+fw('\nemit %s\n' % mat.emit)
+
+Seriously... Blender's material array/object/class was that simple to access the emit value of. 
+Only one other issue here however.
+Blender's emit value is a float of 0.0-2.0f
+Opengl expects a 4 part array for emission, so it would seem I need to make some assumptions here.
+
+A. Blender uses only white color emission and treats it as magnitude
+B. Blender uses an objects Diffuse/Color value as the Emissive one and the emit value merely effects magnitude
+C. Some other wonky crap 
+
+At this moment, Option A seems completely out of the question. It's very apparent a white emission is occuring, and it looks terrible.
+So, the other option is to determine the emissive state based on the color. This leaves issue with magnitude.
+The more I scale the color down to meet the 0-2.0f percentage, the more color precision I lose.
+I could end up with a very emissive black... or very white green.
+
+04-22-2013
+Finally got around to working again. Implemented what I talked about with emission. 
+Seems to work pretty well, though I won't be able to calibrate too much untill I have more complex artsy stuff going on.
+Went through and modified the level camera to speed up and slow down based on input happening. Small QoL change.
+Need to tether it to a player location though, rather than keyboard input.
+
+So, I am building my entity class and getting ready to create the player :D 
+I'll get it done and rendering the player, and then i'll get into figuring out how to do animation with 3d models.
+I could do it in a 2D image fashion, by creating many models of the player in different animation stages...
+That's a lot of data to hold in memory though, so I don't know if that is what I want to do.
+
+In preperation for building animations, I have to actually animate my model. Ended up spending the night away with blender just trying to work out a rig for my character.
+I tried out riggify several times. It's very nice, but also very buggy and hard to get right. Also... there is just too much I don't understand going on.
+So I ended up building my own rig, which is really time consuming but so much easier to use and understand. It's getting close to finished... few kinks.
+Hopefully i'll be ready to create just a standing pose for use in the game soon. 
+
+Pretty happy with what I have. Making a fist is rather crappy, but fingers are just too much work, and I can skirt around with crappy ones with a 2d game like this.
+The "Pose Library" in blender is quite handy, though I am still not 100% sure how to use it. I can however set up a pose, then create a library.
+Then with a few entries, I can go to different poses. I think pose libraries actually work for animations as well, but something to try later as
+it is about time I went to sleep. I have a pose to use in my game, with my character rigged. No reason to dwell on small details when
+there is super fun coding I could do instead :D
+
+4-23-2013
+Well I imported my character into the game, then replaced the camera rigging to work off of the character position 
+and gave the character a tiny bit of speed just to get things moving.The model in blender has an interesting skin material.
+It's a material that has 2 properties, a pink and subderminal to get a somewhat realistic olive color. Anyway, I was quite
+surprised to see it show up in opengl perfectly.
+
+Next up is figuring out animation of models...
+
+4-24-2013
+Seeing as blender doesnt appear to have any exporter for Bones/Rigs, it seems I have to do it myself.
+Just getting the addon loaded and exporting to a file at designated location was pain enough.
+Took a few hours, but now I can build the exporter. The nice thing here is I can export it in the exact format
+I want to use in code.
+
+I figure if the skelaton is structured like so
+
+hipBone
+	spine
+		spine
+			kneck
+				head
+
+I can store the x,y,z location of hipBone, it's angle of direction and length (a vector)
+Then spine would know its parent, calculate that parent's end point, then move on with its own directional vector
+
+For now I just need to figure out what values to export, and the variables in blender that hold them.
+The nice thing about blender is it has a good amount of transparency. Hover over a data field and it's
+variable data path is shown. That is how I was able to determine the emit variable in my material.
+
+So now i'm writing this exporter. I don't want to use xml this time. xml is tidy.. but its a lot of overhead to deal with.
+
+Realized something very cool with blender. So, for one I can modify my addon/exporter to refresh its code every time it runs.
+This lets me make changes and immediatly test it.
+On top of that, with blender I found I can set a keyboard shortcut to exporting in a format. So I chose my bone export, and set it to
+alt-enter. This lets me quickly hit {alt-enter enter} and export to my bones file. 
+I've found the Ogre3D exporter, which exports the mesh and well... everything into xml format.
+I'd have to completely re-write my model importer, but mostly I just prefer to understand what I am doing.
+That said, i'll continue on with my own exporter for now.
+  
+Going to do a text-import, so need stuff in place. i'll draw a simple shape from the bone structure.
+Getting the skelaton of my ...  skelaton class and bone class going. Next up is a class to import into those objects.
+
+Not quite sure how I plan to handle/use IK's in blender yet.
+I can easily key-frame animations, but that doesn't allow me to do any kind of ragdoll type physics in my game.
+Honestly the math is probably beyond me, but it sounds like a fun challenge
+
+04-25-2013
+Well i've been skirting around what format to use for my bones exporter. I think json would be nice.
+I previously only used xml because I was able to figure out how to use it based on code samples I had around.
+But json I can research, so we'll see. I quite like the format, granted I don't like it at all when compressed.
+
+Just like online people will compress giant javascript files so its one block of text... From a technical standpoint it makes sense.
+You save bandwidth, storage space, ect. For programming in general I am usually against it.
+In fact even though java has the ability to have shortened code statements I ONLY use it with if statements in rare cases.
+
+If an if statement will have 1 condition, and its response will be one line, I'll use it.
+
+if (boolean)
+	return false;
+	
+
+But when you get into complex statements, it gets harder to follow.
+
+if (x == 1)
+	// line 1
+else if ( x == 2 )
+	// line 2
+else
+	// line 3
+	// line 4
+
+This example is misleading. In a standard blocking statement, you'd expect that if x is not 1 or 2, line 3 and 4 will run.
+That is not the case, in fact line 4 will run every single time because of how compressed if statements work in java.
+We aren't working in python....
+
+Even more crazy:
+
+if ( x == 1 ) return 1;
+else if ( x == 2 ) return 2;
+else return 3;
+
+You get a whole lot of conditions compressed into a small space. Sure, it saves space, but it also makes the code harder to read.
+In fact I am really anal about code formatting. I don't follow any specific standard, but I do have my own standard I follow.
+In languages such as python, this formatting goes out the window however :[
+Your limited with its space and newline syntax unfortunately.
+
+But I usually do this:
+
+public void doSomething( float fact )
+{
+	doSomethingElse( ( fact * 1000 ) / 255f );
+}
+
+Instead of the more common, and faster to type..:
+
+public void doSomething(float fact){
+	doSomethingElse((fact * 1000)/255f);
+}
+
+The second formatting is in fact much faster to type out with large blocks of code, but it is equally harder to read.
+YES, you can read it and work out what is going on, but it requires far more effort.
+The php standard wordpress uses also requires this. Notice the spacing between logic and brackets, and strict seperation
+of mathmatical order of operations with brackets.
+The nice thing about eclipse and my setup, is I spent a lot of time configuring the code style.
+So I can write out code in the fast typing way, then refactor (ctrl-shift-f) and it formats to the more readably way.
+It's a little lazy, but saves time and makes code more consistant.
+Additionally wordpress style requires the use of unix_style_naming where as I personally prefer to use camelCaseNaming. 
+There was a time I prefered unix naming convention, but I often create really descriptive variables/functions.
+
+An example from my code:
+
+delegateLuaActionResponse( String response );
+
+unix formatting
+delegate_lua_action_response( String response );
+
+It is easier to read, but harder to type. In fact annoyingly harder to type. Underscores have always been a pain in the ass for me.
+It's just not intuitive to the english language.
+I don't follow a width convention, but float around somewhere beteen 100-140 width. Eclipse is set to 160.
+Sometimes I get code blocks I don't want to break into new lines. They can really get harder to read when split into lines.
+
+Anyway, onto learning JSON.
+My exporter looks pretty json-like now, so i'm happy. Now I can work on importing, so i'm looking over the google gson files I have.
+Licensed with apache 2, basically meaning I must distribute the license with the binary. Yet another license to hold on to -.-
+Keeping track of these is quite a pain in the ass.
+
+Was having issues getting my JSON format compliant with googles Gson. I had a clever idea. JSON stands for JavaScript Object Notation.
+So I found a javascript program that converts javascript objects to JSON, and built what I espect the object to be like (tranlated to javascript)
+and it came out with a hopefully correct notation.
+
+I am AMAZED at Gson by Google. I expected something that would allow me to iterate over and grab values, much like the xml parser I built.
+I'm sure Gson has that functionality as well too, but what I am really amazed at is what I found I can do.
+
+Gson can import from JSON directly to an instantiated Java object.
+So for instance, if my bones file looks like:
+{
+    "blender_version": "2.66 (sub 1)",
+    "blender_site": "http://www.blender.org",
+    "project_file": "casey_rigged.blend",
+    "name": "caseySkelaton",
+    "boneList":
+    [
+        {
+            "name": "Root",
+            "parent": null,
+            "connected": "False",
+            "inherit_rotate": "False",
+            "inherit_scale": "False",
+            "angle": 0.0,
+            "length": 0.12132060428652833,
+            "xPos": -3.0785730105312766e-17,
+            "yPos": -0.17983794212341309,
+            "zPos": 0.002420194447040558,
+            "deforms": false,
+            "vector":
+            {
+                "x": -1.5880684561869936e-16,
+                "y": 0.12132060527801514,
+                "z": 0.0
+            }
+        },
+        ...more bones
+	]
+}
+
+If I tell Gson to import to a Skelaton object, if populates the ArrayList boneList with the json array "boneList".
+Cool eh? But it doesnt stop there, NO! Haha, Because I specifically defined my boneList class to be an ArrayList
+of Bone objects, it creates those bone objects, with the values in the Json file.
+
+In fact, it only sets variable names that are in the object. So for instance, if I have a posX variable in bone instead of xPos, it won't set
+the value of it in the object. This allows me to add extra data into my JSON file, while not neccessarily needing it in the object.
+
+How much code does this take to achieve? Have a look.
+
+reader = new FileReader(file);
+buffer = new BufferedReader(reader);
+Skelaton obj = gson.fromJson( buffer, Skelaton.class );
+
+There is some other fluff, but that is it really.
+
+Gson truly blows my mind. I will most definitely phase out my xml stuff with it. I'm sure there are xml loaders that can
+do that same, but json is a far more clear notation I think. At least when dealing with object oriented programming.
+
+I wouldn't replace html with json... haha. So I think xml still has it's place as well. But I don't think i'll find that in my game.
+So very glad I decided not to use Ogre...
+
+Just trying to render my bones. It would seem the coordinates are way off. I'll have to take a look at the obj exporter's math and see
+if I potentially need to change the coordinates of my exporter.
+
+That said... I can't even begin to determine if my vector math is correct.
+Had a lot of trouble computing the x,y location based on Origion x,y, direction angle, and travel speed/length
+Finding information for this in a 3D space is proving to be much more sparse. People will talk all day when it comes to 2D games....
+
+04-27-2013
+I FINALLY have a partial representation of my skelaton in my game. I have many thanks to 'Graeme Hill' of graemehill.ca.
+His blog verified and demonstrated something I suspected. 
+I was exporting the head position, as it's position relative to the armature, 
+when in fact I needed to export it relative to the world too.
+
+armature_location_in_world -> bone_location_in_armature
+head_position = armature.matrix_world * bone.head_local
+
+Furthering that, I have to rotate the coordinates for my game. The standard Obj exporter or my code shows the matrix.
+But its -Z up, Y forward.
+
+So my head position becomes:
+head_pos = (armature.matrix_world + MyMatrix) * bone.head_local 
+
+This done, and imported into my game and I have a series of points. Rendered with GL_POINTS, I can see very clearly 
+the default "tree" pose of my skelaton. 
+
+Now the only issue is it is way up in the sky -.-
+So it is obvious there is some factor of transformation being applied to my mesh that is not being applied to the skelaton.
+I've read a ton on matrixes and am glad that I have learned so much.
+
+Well Graeme's solution works, but it seems my scene is positioned wrong? Sad that I do not know...
+I definitely have the position and rotation off. 

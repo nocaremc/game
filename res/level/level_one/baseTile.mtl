@@ -1,0 +1,28 @@
+# Blender MTL File: 'fullLevel.blend'
+# Material Count: 2
+
+newmtl Material
+
+emit 0.0
+
+test 1.0
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.639282 0.639282 0.639282
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl Material.001
+
+emit 2.0
+
+test 1.0
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.639282 0.639282 0.000000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2

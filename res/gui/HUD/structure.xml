@@ -1,0 +1,5 @@
+<GuiScreen name="HuD">
+	<background value="background.png" />
+	<Objects>
+	</Objects>
+</GuiScreen>

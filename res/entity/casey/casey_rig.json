@@ -1,0 +1,545 @@
+{
+    "blender_version": "2.66 (sub 1)",
+    "blender_site": "http://www.blender.org",
+    "project_file": "casey_rigged.blend",
+    "name": "caseySkelaton",
+    "xPos": "4.30340051651001",
+    "yPos": "6.632447719573975",
+    "zPos": "7.773940086364746",
+    "boneList":
+    [
+        {
+            "name": "hips",
+            "parent": null,
+            "connected": "False",
+            "inherit_rotate": "False",
+            "inherit_scale": "False",
+            "angle": 0.0,
+            "length": 0.2246086737696959,
+            "xPos": -3.551249489706943e-17,
+            "yPos": 1.2447266578674316,
+            "zPos": -0.4299119710922241,
+            "deforms": true,
+            "vector":
+            {
+                "x": 1.9404820725458616e-16,
+                "y": 1.0205258131027222,
+                "z": -0.4434410631656647
+            }
+        },
+        {
+            "name": "hipsRoll",
+            "parent": "hips",
+            "connected": "False",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 113.48601637162133,
+            "length": 0.10118162741475813,
+            "xPos": 1.0994948891270378e-16,
+            "yPos": 1.102660894393921,
+            "zPos": -0.4384847581386566,
+            "deforms": true,
+            "vector":
+            {
+                "x": 6.536867582594206e-18,
+                "y": 1.2036588191986084,
+                "z": -0.43239015340805054
+            }
+        },
+        {
+            "name": "stomach",
+            "parent": "hipsRoll",
+            "connected": "True",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 70.24220612143758,
+            "length": 0.2172578816334943,
+            "xPos": 6.536867582594206e-18,
+            "yPos": 1.2036588191986084,
+            "zPos": -0.43239015340805054,
+            "deforms": true,
+            "vector":
+            {
+                "x": -3.551249489706943e-17,
+                "y": 1.4203181266784668,
+                "z": -0.4162738025188446
+            }
+        },
+        {
+            "name": "chest",
+            "parent": "stomach",
+            "connected": "True",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 74.59805257882563,
+            "length": 0.23115855874625832,
+            "xPos": -3.551249489706943e-17,
+            "yPos": 1.4203181266784668,
+            "zPos": -0.4162738025188446,
+            "deforms": true,
+            "vector":
+            {
+                "x": -3.551249489706943e-17,
+                "y": 1.6436432600021362,
+                "z": -0.4759408235549927
+            }
+        },
+        {
+            "name": "neck",
+            "parent": "chest",
+            "connected": "True",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 75.77748512648142,
+            "length": 0.11372245993594161,
+            "xPos": -3.551249489706943e-17,
+            "yPos": 1.6436432600021362,
+            "zPos": -0.4759408235549927,
+            "deforms": true,
+            "vector":
+            {
+                "x": -3.551249489706943e-17,
+                "y": 1.754453420639038,
+                "z": -0.4503692388534546
+            }
+        },
+        {
+            "name": "head",
+            "parent": "neck",
+            "connected": "True",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 75.71377668810194,
+            "length": 0.19711331483969324,
+            "xPos": -3.551249489706943e-17,
+            "yPos": 1.754453420639038,
+            "zPos": -0.4503692388534546,
+            "deforms": true,
+            "vector":
+            {
+                "x": -3.551249489706943e-17,
+                "y": 1.9505022764205933,
+                "z": -0.4299119710922241
+            }
+        },
+        {
+            "name": "collar.l",
+            "parent": "stomach",
+            "connected": "False",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 26.987056521852328,
+            "length": 0.10757715864388552,
+            "xPos": 0.02272956445813179,
+            "yPos": 1.6347944736480713,
+            "zPos": -0.40588077902793884,
+            "deforms": true,
+            "vector":
+            {
+                "x": 0.11961692571640015,
+                "y": 1.648413062095642,
+                "z": -0.45060455799102783
+            }
+        },
+        {
+            "name": "upperArm.l",
+            "parent": "collar.l",
+            "connected": "False",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 50.64789553049145,
+            "length": 0.31320299823736836,
+            "xPos": 0.1588848978281021,
+            "yPos": 1.6320514678955078,
+            "zPos": -0.4947335124015808,
+            "deforms": true,
+            "vector":
+            {
+                "x": 0.47139251232147217,
+                "y": 1.6173259019851685,
+                "z": -0.5095065236091614
+            }
+        },
+        {
+            "name": "lowerArm.l",
+            "parent": "upperArm.l",
+            "connected": "True",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 66.06489208112276,
+            "length": 0.3098630077130719,
+            "xPos": 0.47139251232147217,
+            "yPos": 1.6173259019851685,
+            "zPos": -0.5095065236091614,
+            "deforms": true,
+            "vector":
+            {
+                "x": 0.7805115580558777,
+                "y": 1.635473608970642,
+                "z": -0.4980533719062805
+            }
+        },
+        {
+            "name": "hand.l",
+            "parent": "lowerArm.l",
+            "connected": "True",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 71.54920490075268,
+            "length": 0.09672092789578685,
+            "xPos": 0.7805115580558777,
+            "yPos": 1.635473608970642,
+            "zPos": -0.4980533719062805,
+            "deforms": true,
+            "vector":
+            {
+                "x": 0.8772196173667908,
+                "y": 1.6370517015457153,
+                "z": -0.4980533719062805
+            }
+        },
+        {
+            "name": "finger.l",
+            "parent": "hand.l",
+            "connected": "True",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 68.34545393066689,
+            "length": 0.048905241519687316,
+            "xPos": 0.8772196173667908,
+            "yPos": 1.6370517015457153,
+            "zPos": -0.4980533719062805,
+            "deforms": true,
+            "vector":
+            {
+                "x": 0.9254146218299866,
+                "y": 1.6294595003128052,
+                "z": -0.4946884214878082
+            }
+        },
+        {
+            "name": "fingerTip.l",
+            "parent": "finger.l",
+            "connected": "True",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 75.9219083493146,
+            "length": 0.04883890970950804,
+            "xPos": 0.9254146218299866,
+            "yPos": 1.6294595003128052,
+            "zPos": -0.4946884214878082,
+            "deforms": true,
+            "vector":
+            {
+                "x": 0.973737359046936,
+                "y": 1.6223777532577515,
+                "z": -0.4946884214878082
+            }
+        },
+        {
+            "name": "thumb.l",
+            "parent": "hand.l",
+            "connected": "False",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 87.56930097281922,
+            "length": 0.08188968477217562,
+            "xPos": 0.8202263712882996,
+            "yPos": 1.6283307075500488,
+            "zPos": -0.47080039978027344,
+            "deforms": true,
+            "vector":
+            {
+                "x": 0.8908308148384094,
+                "y": 1.6247175931930542,
+                "z": -0.4294739067554474
+            }
+        },
+        {
+            "name": "collar.r",
+            "parent": "stomach",
+            "connected": "False",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 146.87107175735844,
+            "length": 0.10757714315551944,
+            "xPos": -0.02272956445813179,
+            "yPos": 1.6347944736480713,
+            "zPos": -0.40588077902793884,
+            "deforms": true,
+            "vector":
+            {
+                "x": -0.11961692571640015,
+                "y": 1.648413062095642,
+                "z": -0.45060455799102783
+            }
+        },
+        {
+            "name": "upperArm.r",
+            "parent": "collar.r",
+            "connected": "False",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 98.86746992110356,
+            "length": 0.3132029408108144,
+            "xPos": -0.1588848978281021,
+            "yPos": 1.6320514678955078,
+            "zPos": -0.4947335124015808,
+            "deforms": true,
+            "vector":
+            {
+                "x": -0.47139251232147217,
+                "y": 1.6173259019851685,
+                "z": -0.5095065236091614
+            }
+        },
+        {
+            "name": "lowerArm.r",
+            "parent": "upperArm.r",
+            "connected": "True",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 80.32778617445825,
+            "length": 0.3098630065448818,
+            "xPos": -0.47139251232147217,
+            "yPos": 1.6173259019851685,
+            "zPos": -0.5095065236091614,
+            "deforms": true,
+            "vector":
+            {
+                "x": -0.7805115580558777,
+                "y": 1.635473608970642,
+                "z": -0.4980533719062805
+            }
+        },
+        {
+            "name": "hand.r",
+            "parent": "lowerArm.r",
+            "connected": "True",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 77.71965747630439,
+            "length": 0.09672092790930407,
+            "xPos": -0.7805115580558777,
+            "yPos": 1.635473608970642,
+            "zPos": -0.4980533719062805,
+            "deforms": true,
+            "vector":
+            {
+                "x": -0.8772196173667908,
+                "y": 1.6370517015457153,
+                "z": -0.4980533719062805
+            }
+        },
+        {
+            "name": "finger.r",
+            "parent": "hand.r",
+            "connected": "True",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 81.94562309023338,
+            "length": 0.04890524196601724,
+            "xPos": -0.8772196173667908,
+            "yPos": 1.6370517015457153,
+            "zPos": -0.4980533719062805,
+            "deforms": true,
+            "vector":
+            {
+                "x": -0.9254146218299866,
+                "y": 1.6294595003128052,
+                "z": -0.4946884214878082
+            }
+        },
+        {
+            "name": "fingerTip.r",
+            "parent": "finger.r",
+            "connected": "True",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 75.9219083493146,
+            "length": 0.04883890970950804,
+            "xPos": -0.9254146218299866,
+            "yPos": 1.6294595003128052,
+            "zPos": -0.4946884214878082,
+            "deforms": true,
+            "vector":
+            {
+                "x": -0.973737359046936,
+                "y": 1.6223777532577515,
+                "z": -0.4946884214878082
+            }
+        },
+        {
+            "name": "thumb.r",
+            "parent": "hand.r",
+            "connected": "False",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 66.18448921500449,
+            "length": 0.08188968923692427,
+            "xPos": -0.8202263712882996,
+            "yPos": 1.6283307075500488,
+            "zPos": -0.47080039978027344,
+            "deforms": true,
+            "vector":
+            {
+                "x": -0.8908308148384094,
+                "y": 1.6247175931930542,
+                "z": -0.4294739067554474
+            }
+        },
+        {
+            "name": "upperLeg.l",
+            "parent": "hipsRoll",
+            "connected": "False",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 113.14426027807609,
+            "length": 0.45305695278441144,
+            "xPos": 0.10013411194086075,
+            "yPos": 1.0503486394882202,
+            "zPos": -0.4434410631656647,
+            "deforms": true,
+            "vector":
+            {
+                "x": 0.07264632731676102,
+                "y": 0.5983917713165283,
+                "z": -0.42794865369796753
+            }
+        },
+        {
+            "name": "lowerLeg.l",
+            "parent": "upperLeg.l",
+            "connected": "True",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 57.99974997765235,
+            "length": 0.47957715404847756,
+            "xPos": 0.07264632731676102,
+            "yPos": 0.5983917713165283,
+            "zPos": -0.42794865369796753,
+            "deforms": true,
+            "vector":
+            {
+                "x": 0.035801321268081665,
+                "y": 0.1282060444355011,
+                "z": -0.514908492565155
+            }
+        },
+        {
+            "name": "foot.l",
+            "parent": "lowerLeg.l",
+            "connected": "True",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 46.32783711709799,
+            "length": 0.12548167678879227,
+            "xPos": 0.035801321268081665,
+            "yPos": 0.1282060444355011,
+            "zPos": -0.514908492565155,
+            "deforms": true,
+            "vector":
+            {
+                "x": 0.05203844979405403,
+                "y": 0.03325614333152771,
+                "z": -0.434493750333786
+            }
+        },
+        {
+            "name": "toe.l",
+            "parent": "foot.l",
+            "connected": "True",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 37.617821655122206,
+            "length": 0.10862654486630749,
+            "xPos": 0.05203844979405403,
+            "yPos": 0.03325614333152771,
+            "zPos": -0.434493750333786,
+            "deforms": true,
+            "vector":
+            {
+                "x": 0.07258658111095428,
+                "y": 0.025075282901525497,
+                "z": -0.32814258337020874
+            }
+        },
+        {
+            "name": "upperLeg.r",
+            "parent": "hipsRoll",
+            "connected": "False",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 106.19151365295578,
+            "length": 0.45305694912280037,
+            "xPos": -0.10013411194086075,
+            "yPos": 1.0503486394882202,
+            "zPos": -0.4434410631656647,
+            "deforms": true,
+            "vector":
+            {
+                "x": -0.07264632731676102,
+                "y": 0.5983917713165283,
+                "z": -0.42794865369796753
+            }
+        },
+        {
+            "name": "lowerLeg.r",
+            "parent": "upperLeg.r",
+            "connected": "True",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 53.08295891121487,
+            "length": 0.479577123090806,
+            "xPos": -0.07264632731676102,
+            "yPos": 0.5983917713165283,
+            "zPos": -0.42794865369796753,
+            "deforms": true,
+            "vector":
+            {
+                "x": -0.035801321268081665,
+                "y": 0.1282060444355011,
+                "z": -0.514908492565155
+            }
+        },
+        {
+            "name": "foot.r",
+            "parent": "lowerLeg.r",
+            "connected": "True",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 59.8863108970846,
+            "length": 0.12548167191811738,
+            "xPos": -0.035801321268081665,
+            "yPos": 0.1282060444355011,
+            "zPos": -0.514908492565155,
+            "deforms": true,
+            "vector":
+            {
+                "x": -0.05203844979405403,
+                "y": 0.03325614333152771,
+                "z": -0.434493750333786
+            }
+        },
+        {
+            "name": "toe.r",
+            "parent": "foot.r",
+            "connected": "True",
+            "inherit_rotate": "True",
+            "inherit_scale": "True",
+            "angle": 52.29683225821768,
+            "length": 0.1086265444644191,
+            "xPos": -0.05203844979405403,
+            "yPos": 0.03325614333152771,
+            "zPos": -0.434493750333786,
+            "deforms": true,
+            "vector":
+            {
+                "x": -0.07258658111095428,
+                "y": 0.025075282901525497,
+                "z": -0.32814258337020874
+            }
+        }
+    ],
+    "file_export_time": "0.0090 sec"
+}

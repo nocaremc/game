@@ -1,0 +1,10 @@
+nocare.util.xml
+
+These XML files were taken straight from Slick2D.
+As I was unable to find any type of license packaged with the compiled or source release of Slick2D
+I felt that this was ok.
+
+I had been trying to parse xml, and after getting it working I found this collection. It very nicely compacts the code I was already using.
+So I threw them into my own package, and have since been modifying and extending their use.
+
+Note: I now include Slick2D... so I should really get around to extending and overriding where need be.

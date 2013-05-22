@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<World>
+	<Title>Level One</Title>
+	<Constants>
+		<force name="gravity" power="9.8" />
+		<force name="sunStrength" power="1.0" />
+	</Constants>
+	<Models>
+		<model name="boots" path="res/level/level_one/nullTile.obj" posX="-0" posY="0" posZ="0"/>
+		<model name="boots" path="res/level/level_one/baseTile.obj" posX="0" posY="0" posZ="0"/>
+		<model name="boots" path="res/level/level_one/baseTile.obj" posX="1" posY="0" posZ="0"/>
+		<model name="boots" path="res/level/level_one/baseTile.obj" posX="2" posY="0" posZ="0"/>
+		<!--<model name="boots" path="res/floor_test2.obj" posX="4.5" posY="-3.6" posZ="-10"/>-->
+	</Models>
+	<Geometry>
+		<dimensions width="2048" height="1536" depth="200" />
+	</Geometry>
+</World>

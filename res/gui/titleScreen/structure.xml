@@ -1,0 +1,78 @@
+<GuiScreen name="title screen">
+	<background value="background.png" />
+	<backgroundColor r="90" g="30" b="22" a="33" />
+	<Objects>
+		<Button>
+			<title>New Game</title>
+			<id>0</id>
+			<width>300</width>
+			<height>50</height>
+			<x offset="0">center</x>
+			<y offset="-290">max</y>
+			<backgroundColor r="255" g="255" b="0" a="255"/>
+			<backgroundColorOver r="155" g="155" b="0" a="255" />
+			<gradient>
+				<start r="10" g="30" b="22" a="255"/>
+				<end r="5" g="13" b="45" a="100"/>
+			</gradient>
+			<font>
+				<color r="0" g="0" b="0" a="255"/>
+				<size>24</size>
+			</font>
+		</Button>
+		<Button>
+			<title>Continue Game</title>
+			<id>1</id>
+			<width>300</width>
+			<height>50</height>
+			<x offset="0">center</x>
+			<y offset="-220">max</y>
+			<backgroundColor r="255" g="255" b="0" a="255"/>
+			<backgroundColorOver r="155" g="155" b="0" a="255" />
+			<gradient>
+				<start r="10" g="30" b="22" a="255"/>
+				<end r="5" g="13" b="45" a="100"/>
+			</gradient>
+			<font>
+				<color r="0" g="0" b="0" a="255"/>
+				<size>24</size>
+			</font>
+		</Button>
+		<Button>
+			<title>Options</title>
+			<id>2</id>
+			<width>300</width>
+			<height>50</height>
+			<x offset="0">center</x>
+			<y offset="-150">max</y>
+			<backgroundColor r="255" g="255" b="0" a="255"/>
+			<backgroundColorOver r="155" g="155" b="0" a="255" />
+			<gradient>
+				<start r="10" g="30" b="22" a="255"/>
+				<end r="5" g="13" b="45" a="100"/>
+			</gradient>
+			<font>
+				<color r="0" g="0" b="0" a="255"/>
+				<size>24</size>
+			</font>
+		</Button>
+		<Button>
+			<title>Quit Game</title>
+			<id>3</id>
+			<width>300</width>
+			<height>50</height>
+			<x offset="0">center</x>
+			<y offset="-80">max</y>
+			<backgroundColor r="255" g="255" b="0" a="255"/>
+			<backgroundColorOver r="155" g="155" b="0" a="255" />
+			<gradient>
+				<start r="10" g="30" b="22" a="255"/>
+				<end r="5" g="13" b="45" a="100"/>
+			</gradient>
+			<font>
+				<color r="0" g="0" b="0" a="255"/>
+				<size>24</size>
+			</font>
+		</Button>
+	</Objects>
+</GuiScreen>

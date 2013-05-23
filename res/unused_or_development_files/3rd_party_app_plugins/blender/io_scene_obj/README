@@ -1,0 +1,4 @@
+This is the standard blender Wavefront OBJ exporter for blender 2.66
+I have modified it to additionally export the emit value of materials.
+
+TODO: Remove this when JSON exporter can replace it

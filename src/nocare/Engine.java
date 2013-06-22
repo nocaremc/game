@@ -9,8 +9,7 @@ import org.lwjgl.opengl.Display;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.util.glu.GLU.*;
 
-public class Engine implements IMaid
-{
+public class Engine implements IMaid {
 	private float fieldOfView = 38f;
 
 	// Title to be used on the window
@@ -26,8 +25,7 @@ public class Engine implements IMaid
 	 * Program entry point. Creates new Engine instance and initializes it
 	 * @param args - Not used at this time
 	 */
-	public static void main( String[] args )
-	{
+	public static void main( String[] args ) {
 		Engine p = new Engine();
 		p.init();
 	}
@@ -35,10 +33,9 @@ public class Engine implements IMaid
 	/**
 	 * Set up OpenGL, App, and start the Main loop
 	 */
-	private void init()
-	{
+	private void init() {
 		app = new App( this );
-		
+
 		// This is called inside of app. Sorry... the opengl setup requires the game settings
 		// So app needs to set that up, and then it calls opengl in this class
 		// It's wonky, but some things app sets up need an opengl context, so this loops round...
@@ -50,8 +47,7 @@ public class Engine implements IMaid
 	/**
 	 * This is the main application loop
 	 */
-	private void mainLoop()
-	{
+	private void mainLoop() {
 		//float xRot = 0;
 		//float yRot = 0;
 		//float zRot = 0;
@@ -60,15 +56,14 @@ public class Engine implements IMaid
 		long loopLength;
 		long targetLoopTime = ( long ) ( ( 1000L / App.getSettings().getRefreshRate() ) * 1000000000L );
 
-		while ( running && !Display.isCloseRequested() )
-		{
+		while ( running && !Display.isCloseRequested() ) {
 			// Loop starts now
 			loopStart = System.nanoTime();
 
 			glMatrixMode( GL_MODELVIEW );
 			glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 			glLoadIdentity();
-			
+
 			// App's update function runs. Handles input, updates game, then renders
 			app.update();
 
@@ -83,15 +78,12 @@ public class Engine implements IMaid
 			// So if its 60fps, then one loop should take 16 miliseconds or 16 billion nano seconds
 
 			// If loop execution time less than desired
-			if ( loopLength < targetLoopTime )
-			{
+			if ( loopLength < targetLoopTime ) {
 				// Sleep for the remaining amount of time to get a set execution time
-				try
-				{
+				try {
 					Thread.sleep( ( targetLoopTime - loopLength ) / 1000000000L );
 				}
-				catch ( InterruptedException e )
-				{
+				catch ( InterruptedException e ) {
 					e.printStackTrace();
 				}
 			}
@@ -104,8 +96,7 @@ public class Engine implements IMaid
 	/**
 	 * Reshapes the game screen and or other related settings
 	 */
-	private void reShape()
-	{
+	private void reShape() {
 		int width = App.getSettings().getScreenWidth();
 		int height = App.getSettings().getScreenHeight();
 		float aspectRatio = ( float ) width / ( float ) height;
@@ -129,10 +120,8 @@ public class Engine implements IMaid
 		System.out.println( "fov: " + fieldOfView );
 	}
 
-	public void setupGL()
-	{
-		try
-		{	
+	public void setupGL() {
+		try {
 			//Display.setDisplayMode( new DisplayMode( WIDTH, HEIGHT ) );
 			Display.setDisplayMode( App.getSettings().getDisplayMode() );
 			Display.setFullscreen( App.getSettings().isFullscreen() );
@@ -141,12 +130,11 @@ public class Engine implements IMaid
 
 			glViewport( 0, 0, App.getSettings().getScreenWidth(), App.getSettings().getScreenHeight() );
 		}
-		catch ( LWJGLException e )
-		{
+		catch ( LWJGLException e ) {
 			e.printStackTrace();
 			System.exit( -1 );
 		}
-		
+
 		int width = App.getSettings().getScreenWidth();
 		int height = App.getSettings().getScreenHeight();
 		float aspectRatio = ( float ) width / ( float ) height;
@@ -179,12 +167,11 @@ public class Engine implements IMaid
 	 * Ends the game, does any final cleanup
 	 * @param flag - System.exit code
 	 */
-	protected void endGame( boolean crash )
-	{
+	protected void endGame( boolean crash ) {
 		// Tell app to cleanup, which in turn delegates to everyone else
 		app.cleanup();
 
-		// Now so we aren't a hypocrit
+		// Now so we aren't a hypocrite
 		cleanup();
 
 		// Exit process, passing a true or false return code
@@ -192,9 +179,9 @@ public class Engine implements IMaid
 	}
 
 	@Override
-	public void cleanup()
-	{
-		if ( Display.isActive() )
+	public void cleanup() {
+		if ( Display.isActive() ) {
 			Display.destroy();
+		}
 	}
 }

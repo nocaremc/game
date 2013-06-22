@@ -22,8 +22,7 @@ import org.lwjgl.util.vector.Vector3f;
  *         changing this
  */
 
-public class Model
-{
+public class Model {
 	private List<Vector3f> vertices = new ArrayList<Vector3f>();
 	private List<Vector3f> normals = new ArrayList<Vector3f>();
 	private List<Face> faces = new ArrayList<Face>();
@@ -49,68 +48,55 @@ public class Model
 	/*
 	 *  Getters
 	 */
-	public List<Vector3f> getVertices()
-	{
+	public List<Vector3f> getVertices() {
 		return vertices;
 	}
 
-	public Vector3f getVertexByIndex( int index )
-	{
+	public Vector3f getVertexByIndex( int index ) {
 		return this.vertices.get( index );
 	}
 
-	public List<Vector3f> getNormals()
-	{
+	public List<Vector3f> getNormals() {
 		return normals;
 	}
 
-	public Vector3f getNormalByIndex( int index )
-	{
+	public Vector3f getNormalByIndex( int index ) {
 		return this.normals.get( index );
 	}
 
-	public List<Face> getFaces()
-	{
+	public List<Face> getFaces() {
 		return faces;
 	}
 
-	public String getName()
-	{
+	public String getName() {
 		return modelName;
 	}
 
-	public Vector3f getMin()
-	{
+	public Vector3f getMin() {
 		return new Vector3f( minX, minY, minZ );
 	}
 
-	public Vector3f getMax()
-	{
+	public Vector3f getMax() {
 		return new Vector3f( maxX, maxY, maxZ );
 	}
 
-	public List<Material> getMaterials()
-	{
+	public List<Material> getMaterials() {
 		return materials;
 	}
 
-	public Material getMaterialAt( int materialIndex )
-	{
+	public Material getMaterialAt( int materialIndex ) {
 		return materials.get( materialIndex );
 	}
-	
-	public float getX()
-	{
+
+	public float getX() {
 		return xPos;
 	}
-	
-	public float getY()
-	{
+
+	public float getY() {
 		return yPos;
 	}
-	
-	public float getZ()
-	{
+
+	public float getZ() {
 		return zPos;
 	}
 
@@ -119,14 +105,12 @@ public class Model
 	 */
 
 	/* Set vertices equal to a previously created list */
-	public void setVertices( List<Vector3f> vertices, float[] bounds )
-	{
+	public void setVertices( List<Vector3f> vertices, float[] bounds ) {
 		this.vertices = vertices;
 	}
 
 	/* Add a new vertex to vertices List */
-	public void addVertex( Vector3f vertex )
-	{
+	public void addVertex( Vector3f vertex ) {
 		this.vertices.add( vertex );
 
 		float x = vertex.getX();
@@ -151,89 +135,74 @@ public class Model
 	}
 
 	/* Set normals equal to a previously created list */
-	public void setNormals( List<Vector3f> normals )
-	{
+	public void setNormals( List<Vector3f> normals ) {
 		this.normals = normals;
 	}
 
 	/* Add a new normal to normals List */
-	public void addNormal( Vector3f normal )
-	{
+	public void addNormal( Vector3f normal ) {
 		this.normals.add( normal );
 	}
 
-	public void setMaterials( List<Material> materials )
-	{
+	public void setMaterials( List<Material> materials ) {
 		this.materials = materials;
 	}
 
 	/* Set List of faces equal to a previously created list */
-	public void setFaces( List<Face> faces )
-	{
+	public void setFaces( List<Face> faces ) {
 		this.faces = faces;
 	}
 
 	/* Add face to List of faces */
-	public void addFace( Face face )
-	{
+	public void addFace( Face face ) {
 		this.faces.add( face );
 	}
 
 	/* Set the name of this model */
-	public void setName( String modelName )
-	{
+	public void setName( String modelName ) {
 		this.modelName = modelName;
 	}
 
-	public void setX( float x )
-	{
+	public void setX( float x ) {
 		xPos = x;
 	}
 
-	public void setY( float y )
-	{
+	public void setY( float y ) {
 		yPos = y;
 	}
 
-	public void setZ( float z )
-	{
+	public void setZ( float z ) {
 		zPos = z;
 	}
 
-	public void setPosition( float x, float y, float z )
-	{
+	public void setPosition( float x, float y, float z ) {
 		xPos = x;
 		yPos = y;
 		zPos = z;
 	}
 
-	public void setRotation( float x, float y, float z )
-	{
+	public void setRotation( float x, float y, float z ) {
 		xRot = x;
 		yRot = y;
 		zRot = z;
 	}
 
-	public void translatef( float x, float y, float z )
-	{
-		for ( int i = 0; i < normals.size(); i++ )
-		{
+	public void translatef( float x, float y, float z ) {
+		for ( int i = 0; i < normals.size(); i++ ) {
 			normals.get( i ).translate( x, y, z );
 		}
 
-		for ( int i = 0; i < vertices.size(); i++ )
-		{
+		for ( int i = 0; i < vertices.size(); i++ ) {
 			vertices.get( i ).translate( x, y, z );
 		}
 
 	}
 
-	public void render()
-	{
+	public void render() {
 		// Set up colors for faces. Temporary untill I get texturing in
-		Color[] colors =
-		{ ( Color ) Color.BLACK, ( Color ) Color.BLUE, ( Color ) Color.CYAN, ( Color ) Color.DKGREY, ( Color ) Color.GREEN, ( Color ) Color.GREY,
-				( Color ) Color.LTGREY, ( Color ) Color.ORANGE, ( Color ) Color.PURPLE, ( Color ) Color.RED, ( Color ) Color.WHITE, ( Color ) Color.YELLOW };
+		Color[] colors = { ( Color ) Color.BLACK, ( Color ) Color.BLUE, ( Color ) Color.CYAN, ( Color ) Color.DKGREY, ( Color ) Color.GREEN,
+				( Color ) Color.GREY, ( Color ) Color.LTGREY, ( Color ) Color.ORANGE, ( Color ) Color.PURPLE, ( Color ) Color.RED, ( Color ) Color.WHITE,
+				( Color ) Color.YELLOW };
 
 		int colorIndex = 0;
 
@@ -247,41 +216,32 @@ public class Model
 		glRotatef( xRot, 1f, 0f, 0f );
 		glRotatef( yRot, 0f, 1f, 0f );
 		glRotatef( zRot, 0f, 0f, 1f );
-		
+
 		//glEnable(GL_LIGHTING);
 		//glEnable(GL_LIGHT0);
 		//glEnable(GL_COLOR_MATERIAL);
 		//glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
-		
+
 		// Need to know if we are working with a new material
 		int lastMaterialIndex = -1;
-		
-		for ( Face face : getFaces() )
-		{
+
+		for ( Face face : getFaces() ) {
 			// Incrementing which color used, so each face has a different color. Temporary...
 			//			GeneralUtils.glColorShortcut( colors[colorIndex] );
 			colorIndex++;
 
-		
-			
 			// Get the material index this face uses
 			int materialIndex = face.getMaterialIndex();
-			
-			if (materialIndex != lastMaterialIndex)
-			{
+
+			if ( materialIndex != lastMaterialIndex ) {
 				lastMaterialIndex = materialIndex;
-				
-				
+
 				// Set the current draw color to that of the material at index. Diffuse color of faces
 				GeneralUtils.glColorShortcut( materials.get( materialIndex ).getDiffuse() );
-				
-				updateGLMaterial(materialIndex);
-			}
-			
 
-			
-			
-			
+				updateGLMaterial( materialIndex );
+			}
+
 			//GeneralUtils.glColorShortcut( colors[materialIndex] );		
 			if ( colorIndex >= colors.length )
 				colorIndex = 0;
@@ -304,12 +264,10 @@ public class Model
 			}
 			glEnd();
 		}
-		glDisable(GL_COLOR_MATERIAL);
-		glDisable(GL_LIGHT0);
-		glDisable(GL_LIGHTING);
-		
-		
-		
+		glDisable( GL_COLOR_MATERIAL );
+		glDisable( GL_LIGHT0 );
+		glDisable( GL_LIGHTING );
+
 		// Translate the model back from the origin
 		glTranslatef( -xPos, -yPos, -zPos );
 
@@ -317,36 +275,31 @@ public class Model
 		glPopMatrix();
 	}
 
-	private void updateGLMaterial( int materialIndex )
-	{
+	private void updateGLMaterial( int materialIndex ) {
 		Material m = materials.get( materialIndex );
-		
-		glShadeModel(GL_SMOOTH);
-		glMaterial(GL_FRONT, GL_SPECULAR, m.getSpecular());				// sets specular material color
-		glMaterialf(GL_FRONT, GL_SHININESS, 96.078431f);					// sets shininess
-		
-		glLight(GL_LIGHT0, GL_POSITION, m.lightPosition());				// sets light position
-		glLight(GL_LIGHT0, GL_SPECULAR, m.getSpecular());				// sets specular light to white
-		glLight(GL_LIGHT0, GL_DIFFUSE, m.getDiffuse());					// sets diffuse light to white
-		glLightModel(GL_LIGHT_MODEL_AMBIENT, m.getAmbience());		// global ambient light 
-		
-		
-		
-		glEnable(GL_LIGHTING);										// enables lighting
-		glEnable(GL_LIGHT0);										// enables light0
-		
+
+		glShadeModel( GL_SMOOTH );
+		glMaterial( GL_FRONT, GL_SPECULAR, m.getSpecular() );				// sets specular material color
+		glMaterialf( GL_FRONT, GL_SHININESS, 96.078431f );					// sets shininess
+
+		glLight( GL_LIGHT0, GL_POSITION, m.lightPosition() );				// sets light position
+		glLight( GL_LIGHT0, GL_SPECULAR, m.getSpecular() );				// sets specular light to white
+		glLight( GL_LIGHT0, GL_DIFFUSE, m.getDiffuse() );					// sets diffuse light to white
+		glLightModel( GL_LIGHT_MODEL_AMBIENT, m.getAmbience() );		// global ambient light 
+
+		glEnable( GL_LIGHTING );										// enables lighting
+		glEnable( GL_LIGHT0 );										// enables light0
+
 		//glEnable(GL_COLOR_MATERIAL);								// enables opengl to use glColor3f to define material color
 		//glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
-		
+
 		// If the material has emission set it, otherwise, disable emission for this material
-		if (materials.get( materialIndex ).hasEmission())
-		{
-			glMaterial(GL_FRONT, GL_EMISSION, m.getEmission());
+		if ( materials.get( materialIndex ).hasEmission() ) {
+			glMaterial( GL_FRONT, GL_EMISSION, m.getEmission() );
 		}
-		else
-		{
-			glMaterial(GL_FRONT, GL_EMISSION, Material.noEmission);
+		else {
+			glMaterial( GL_FRONT, GL_EMISSION, Material.noEmission );
 		}
-		
+
 	}
 }

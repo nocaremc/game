@@ -15,8 +15,7 @@ import org.w3c.dom.Document;
  * 
  * @author kevin
  */
-public class XMLParser
-{
+public class XMLParser {
 	/**
 	 * The factory used to to create document builders that parse XML into the
 	 * DOM
@@ -26,8 +25,7 @@ public class XMLParser
 	/**
 	 * Create a new parser
 	 */
-	public XMLParser()
-	{
+	public XMLParser() {
 	}
 
 	/**
@@ -41,8 +39,7 @@ public class XMLParser
 	 *             Indicates a failure to parse the XML, most likely the
 	 *             XML is malformed in some way.
 	 */
-	public XMLElement parse( String ref ) throws SlickException
-	{
+	public XMLElement parse( String ref ) throws SlickException {
 		return parse( ref, ResourceLoader.getResourceAsStream( ref ) );
 	}
 
@@ -58,12 +55,9 @@ public class XMLParser
 	 *             Indicates a failure to parse the XML, most likely the
 	 *             XML is malformed in some way.
 	 */
-	public XMLElement parse( String name, InputStream in ) throws XMLException
-	{
-		try
-		{
-			if ( factory == null )
-			{
+	public XMLElement parse( String name, InputStream in ) throws XMLException {
+		try {
+			if ( factory == null ) {
 				factory = DocumentBuilderFactory.newInstance();
 			}
 			DocumentBuilder builder = factory.newDocumentBuilder();
@@ -71,8 +65,7 @@ public class XMLParser
 
 			return new XMLElement( doc.getDocumentElement() );
 		}
-		catch ( Exception e )
-		{
+		catch ( Exception e ) {
 			throw new XMLException( "Failed to parse document: " + name, e );
 		}
 	}

@@ -10,13 +10,12 @@ import nocare.util.GeneralUtils;
  * http://www.fileformat.info/format/material/
  * @author Nocare
  */
-public class Material
-{
-	public static final float[] empty = {0.0f, 0.0f, 0.0f, 0.0f}; 
-	public static final FloatBuffer noEmission =  GeneralUtils.floatBufferFromArray(empty); 
-	
+public class Material {
+	public static final float[] empty = { 0.0f, 0.0f, 0.0f, 0.0f };
+	public static final FloatBuffer noEmission = GeneralUtils.floatBufferFromArray( empty );
+
 	private String name;
-	
+
 	// range 0-2 float.
 	private FloatBuffer emit;
 	private boolean hasEmit = false;
@@ -29,10 +28,9 @@ public class Material
 	private FloatBuffer diffuse;
 	// Ks rgb
 	private FloatBuffer specular;
-	
+
 	private FloatBuffer lightPosition;
-	
-	
+
 	// d - dissolve/alpha
 	@SuppressWarnings( "unused" )
 	private float dissolve;
@@ -46,68 +44,59 @@ public class Material
 	// Ni optical densisty - unused
 	@SuppressWarnings( "unused" )
 	private float opticalDensity;
-	
-	public Material(String name, float emit, float shiny, float[] ambience, float[] diffuse, float[] specular, float dissolve, int illum)
-	{
-		this.name=name;
-		this.shininess=shiny;
-		this.ambience=GeneralUtils.floatBufferFromArray( ambience );
-		this.diffuse=GeneralUtils.floatBufferFromArray( diffuse );
-		this.specular=GeneralUtils.floatBufferFromArray( specular );
-		this.dissolve=dissolve;
-		this.illumination=illum;
-		
+
+	public Material( String name, float emit, float shiny, float[] ambience, float[] diffuse, float[] specular, float dissolve, int illum ) {
+		this.name = name;
+		this.shininess = shiny;
+		this.ambience = GeneralUtils.floatBufferFromArray( ambience );
+		this.diffuse = GeneralUtils.floatBufferFromArray( diffuse );
+		this.specular = GeneralUtils.floatBufferFromArray( specular );
+		this.dissolve = dissolve;
+		this.illumination = illum;
+
 		float[] f = new float[4];
-		f[0]=1.0f;
-		f[1]=1.0f;
-		f[2]=1.0f;
-		f[3]=0.0f;
-			
+		f[0] = 1.0f;
+		f[1] = 1.0f;
+		f[2] = 1.0f;
+		f[3] = 0.0f;
+
 		lightPosition = GeneralUtils.floatBufferFromArray( f );
-		
-		if (emit != 0.0f)
-		{
+
+		if ( emit != 0.0f ) {
 			hasEmit = true;
-			f[0]=diffuse[0]*(emit/2f);
-			f[1]=diffuse[1]*(emit/2f);
-			f[2]=diffuse[2]*(emit/2f);
-			f[3]=0.0f;
+			f[0] = diffuse[0] * ( emit / 2f );
+			f[1] = diffuse[1] * ( emit / 2f );
+			f[2] = diffuse[2] * ( emit / 2f );
+			f[3] = 0.0f;
 			this.emit = GeneralUtils.floatBufferFromArray( f );
 		}
 	}
-	
-	public String getName()
-	{
+
+	public String getName() {
 		return name;
 	}
 
-	public FloatBuffer getSpecular()
-	{
+	public FloatBuffer getSpecular() {
 		return specular;
 	}
 
-	public FloatBuffer getDiffuse()
-	{
+	public FloatBuffer getDiffuse() {
 		return diffuse;
 	}
 
-	public FloatBuffer getAmbience()
-	{
+	public FloatBuffer getAmbience() {
 		return ambience;
 	}
 
-	public FloatBuffer lightPosition()
-	{
+	public FloatBuffer lightPosition() {
 		return lightPosition;
 	}
 
-	public FloatBuffer getEmission()
-	{
+	public FloatBuffer getEmission() {
 		return emit;
 	}
-	
-	public boolean hasEmission()
-	{
+
+	public boolean hasEmission() {
 		return hasEmit;
 	}
 }

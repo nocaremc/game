@@ -11,56 +11,54 @@ import org.lwjgl.util.vector.Vector3f;
  * Besides, I think susanne could have been yet more complex... haha.
  */
 
-public class Icosidodecahedron extends Model
-{
-	private static final Vector3f[] verts =
-	{ new Vector3f( 0.262933f, 0.141735f, -0.283522f ), new Vector3f( 0.317042f, 0.175177f, -0.195972f ), new Vector3f( 0.371198f, 0.141706f, -0.108346f ),
-			new Vector3f( 0.404640f, 0.054156f, -0.054237f ), new Vector3f( 0.404640f, -0.054156f, -0.054237f ),
-			new Vector3f( 0.371198f, -0.141706f, -0.108346f ), new Vector3f( 0.317042f, -0.175177f, -0.195972f ),
-			new Vector3f( 0.262933f, -0.141735f, -0.283522f ), new Vector3f( 0.229463f, -0.054109f, -0.337678f ),
-			new Vector3f( 0.229463f, 0.054109f, -0.337678f ), new Vector3f( -0.317042f, 0.175177f, -0.195972f ),
-			new Vector3f( -0.262933f, 0.141735f, -0.283522f ), new Vector3f( -0.229463f, 0.054109f, -0.337678f ),
-			new Vector3f( -0.229463f, -0.054109f, -0.337678f ), new Vector3f( -0.262933f, -0.141735f, -0.283522f ),
-			new Vector3f( -0.317042f, -0.175177f, -0.195972f ), new Vector3f( -0.371198f, -0.141706f, -0.108346f ),
-			new Vector3f( -0.404640f, -0.054156f, -0.054237f ), new Vector3f( -0.404640f, 0.054156f, -0.054237f ),
-			new Vector3f( -0.371198f, 0.141706f, -0.108346f ), new Vector3f( 0.317042f, 0.175177f, 0.195972f ),
-			new Vector3f( 0.262933f, 0.141735f, 0.283522f ), new Vector3f( 0.229463f, 0.054109f, 0.337678f ), new Vector3f( 0.229463f, -0.054109f, 0.337678f ),
-			new Vector3f( 0.262933f, -0.141735f, 0.283522f ), new Vector3f( 0.317042f, -0.175177f, 0.195972f ),
-			new Vector3f( 0.371198f, -0.141706f, 0.108346f ), new Vector3f( 0.404640f, -0.054156f, 0.054237f ),
-			new Vector3f( 0.404640f, 0.054156f, 0.054237f ), new Vector3f( 0.371198f, 0.141706f, 0.108346f ), new Vector3f( -0.262933f, 0.141735f, 0.283522f ),
-			new Vector3f( -0.317042f, 0.175177f, 0.195972f ), new Vector3f( -0.371198f, 0.141706f, 0.108346f ),
-			new Vector3f( -0.404640f, 0.054156f, 0.054237f ), new Vector3f( -0.404640f, -0.054156f, 0.054237f ),
-			new Vector3f( -0.371198f, -0.141706f, 0.108346f ), new Vector3f( -0.317042f, -0.175177f, 0.195972f ),
-			new Vector3f( -0.262933f, -0.141735f, 0.283522f ), new Vector3f( -0.229463f, -0.054109f, 0.337678f ),
-			new Vector3f( -0.229463f, 0.054109f, 0.337678f ), new Vector3f( 0.283522f, 0.262933f, -0.141735f ),
-			new Vector3f( 0.195972f, 0.317042f, -0.175177f ), new Vector3f( 0.108346f, 0.371198f, -0.141706f ),
-			new Vector3f( 0.054237f, 0.404640f, -0.054156f ), new Vector3f( 0.054237f, 0.404640f, 0.054156f ), new Vector3f( 0.108346f, 0.371198f, 0.141706f ),
-			new Vector3f( 0.195972f, 0.317042f, 0.175177f ), new Vector3f( 0.283522f, 0.262933f, 0.141735f ), new Vector3f( 0.337678f, 0.229463f, 0.054109f ),
-			new Vector3f( 0.337678f, 0.229463f, -0.054109f ), new Vector3f( 0.195972f, -0.317042f, -0.175177f ),
-			new Vector3f( 0.283522f, -0.262933f, -0.141735f ), new Vector3f( 0.337678f, -0.229463f, -0.054109f ),
-			new Vector3f( 0.337678f, -0.229463f, 0.054109f ), new Vector3f( 0.283522f, -0.262933f, 0.141735f ),
-			new Vector3f( 0.195972f, -0.317042f, 0.175177f ), new Vector3f( 0.108346f, -0.371198f, 0.141706f ),
-			new Vector3f( 0.054237f, -0.404640f, 0.054156f ), new Vector3f( 0.054237f, -0.404640f, -0.054156f ),
-			new Vector3f( 0.108346f, -0.371198f, -0.141706f ), new Vector3f( -0.195972f, 0.317042f, -0.175177f ),
-			new Vector3f( -0.283522f, 0.262933f, -0.141735f ), new Vector3f( -0.337678f, 0.229463f, -0.054109f ),
-			new Vector3f( -0.337678f, 0.229463f, 0.054109f ), new Vector3f( -0.283522f, 0.262933f, 0.141735f ),
-			new Vector3f( -0.195972f, 0.317042f, 0.175177f ), new Vector3f( -0.108346f, 0.371198f, 0.141706f ),
-			new Vector3f( -0.054237f, 0.404640f, 0.054156f ), new Vector3f( -0.054237f, 0.404640f, -0.054156f ),
-			new Vector3f( -0.108346f, 0.371198f, -0.141706f ), new Vector3f( -0.283522f, -0.262933f, -0.141735f ),
-			new Vector3f( -0.195972f, -0.317042f, -0.175177f ), new Vector3f( -0.108346f, -0.371198f, -0.141706f ),
-			new Vector3f( -0.054237f, -0.404640f, -0.054156f ), new Vector3f( -0.054237f, -0.404640f, 0.054156f ),
-			new Vector3f( -0.108346f, -0.371198f, 0.141706f ), new Vector3f( -0.195972f, -0.317042f, 0.175177f ),
-			new Vector3f( -0.283522f, -0.262933f, 0.141735f ), new Vector3f( -0.337678f, -0.229463f, 0.054109f ),
-			new Vector3f( -0.337678f, -0.229463f, -0.054109f ), new Vector3f( 0.141735f, 0.283522f, -0.262933f ),
-			new Vector3f( 0.175177f, 0.195972f, -0.317042f ), new Vector3f( 0.141706f, 0.108346f, -0.371198f ),
-			new Vector3f( 0.054156f, 0.054237f, -0.404640f ), new Vector3f( -0.054156f, 0.054237f, -0.404640f ),
-			new Vector3f( -0.141706f, 0.108346f, -0.371198f ), new Vector3f( -0.175177f, 0.195972f, -0.317042f ),
-			new Vector3f( -0.141735f, 0.283522f, -0.262933f ), new Vector3f( -0.054109f, 0.337678f, -0.229463f ),
-			new Vector3f( 0.054109f, 0.337678f, -0.229463f ), new Vector3f( 0.175177f, 0.195972f, 0.317042f ), new Vector3f( 0.141735f, 0.283522f, 0.262933f ),
-			new Vector3f( 0.054109f, 0.337678f, 0.229463f ), new Vector3f( -0.054109f, 0.337678f, 0.229463f ),
-			new Vector3f( -0.141735f, 0.283522f, 0.262933f ), new Vector3f( -0.175177f, 0.195972f, 0.317042f ),
-			new Vector3f( -0.141706f, 0.108346f, 0.371198f ), new Vector3f( -0.054156f, 0.054237f, 0.404640f ),
-			new Vector3f( 0.054156f, 0.054237f, 0.404640f ), new Vector3f( 0.141706f, 0.108346f, 0.371198f ),
+public class Icosidodecahedron extends Model {
+	private static final Vector3f[] verts = { new Vector3f( 0.262933f, 0.141735f, -0.283522f ), new Vector3f( 0.317042f, 0.175177f, -0.195972f ),
+			new Vector3f( 0.371198f, 0.141706f, -0.108346f ), new Vector3f( 0.404640f, 0.054156f, -0.054237f ),
+			new Vector3f( 0.404640f, -0.054156f, -0.054237f ), new Vector3f( 0.371198f, -0.141706f, -0.108346f ),
+			new Vector3f( 0.317042f, -0.175177f, -0.195972f ), new Vector3f( 0.262933f, -0.141735f, -0.283522f ),
+			new Vector3f( 0.229463f, -0.054109f, -0.337678f ), new Vector3f( 0.229463f, 0.054109f, -0.337678f ),
+			new Vector3f( -0.317042f, 0.175177f, -0.195972f ), new Vector3f( -0.262933f, 0.141735f, -0.283522f ),
+			new Vector3f( -0.229463f, 0.054109f, -0.337678f ), new Vector3f( -0.229463f, -0.054109f, -0.337678f ),
+			new Vector3f( -0.262933f, -0.141735f, -0.283522f ), new Vector3f( -0.317042f, -0.175177f, -0.195972f ),
+			new Vector3f( -0.371198f, -0.141706f, -0.108346f ), new Vector3f( -0.404640f, -0.054156f, -0.054237f ),
+			new Vector3f( -0.404640f, 0.054156f, -0.054237f ), new Vector3f( -0.371198f, 0.141706f, -0.108346f ),
+			new Vector3f( 0.317042f, 0.175177f, 0.195972f ), new Vector3f( 0.262933f, 0.141735f, 0.283522f ), new Vector3f( 0.229463f, 0.054109f, 0.337678f ),
+			new Vector3f( 0.229463f, -0.054109f, 0.337678f ), new Vector3f( 0.262933f, -0.141735f, 0.283522f ),
+			new Vector3f( 0.317042f, -0.175177f, 0.195972f ), new Vector3f( 0.371198f, -0.141706f, 0.108346f ),
+			new Vector3f( 0.404640f, -0.054156f, 0.054237f ), new Vector3f( 0.404640f, 0.054156f, 0.054237f ), new Vector3f( 0.371198f, 0.141706f, 0.108346f ),
+			new Vector3f( -0.262933f, 0.141735f, 0.283522f ), new Vector3f( -0.317042f, 0.175177f, 0.195972f ),
+			new Vector3f( -0.371198f, 0.141706f, 0.108346f ), new Vector3f( -0.404640f, 0.054156f, 0.054237f ),
+			new Vector3f( -0.404640f, -0.054156f, 0.054237f ), new Vector3f( -0.371198f, -0.141706f, 0.108346f ),
+			new Vector3f( -0.317042f, -0.175177f, 0.195972f ), new Vector3f( -0.262933f, -0.141735f, 0.283522f ),
+			new Vector3f( -0.229463f, -0.054109f, 0.337678f ), new Vector3f( -0.229463f, 0.054109f, 0.337678f ),
+			new Vector3f( 0.283522f, 0.262933f, -0.141735f ), new Vector3f( 0.195972f, 0.317042f, -0.175177f ),
+			new Vector3f( 0.108346f, 0.371198f, -0.141706f ), new Vector3f( 0.054237f, 0.404640f, -0.054156f ),
+			new Vector3f( 0.054237f, 0.404640f, 0.054156f ), new Vector3f( 0.108346f, 0.371198f, 0.141706f ), new Vector3f( 0.195972f, 0.317042f, 0.175177f ),
+			new Vector3f( 0.283522f, 0.262933f, 0.141735f ), new Vector3f( 0.337678f, 0.229463f, 0.054109f ), new Vector3f( 0.337678f, 0.229463f, -0.054109f ),
+			new Vector3f( 0.195972f, -0.317042f, -0.175177f ), new Vector3f( 0.283522f, -0.262933f, -0.141735f ),
+			new Vector3f( 0.337678f, -0.229463f, -0.054109f ), new Vector3f( 0.337678f, -0.229463f, 0.054109f ),
+			new Vector3f( 0.283522f, -0.262933f, 0.141735f ), new Vector3f( 0.195972f, -0.317042f, 0.175177f ),
+			new Vector3f( 0.108346f, -0.371198f, 0.141706f ), new Vector3f( 0.054237f, -0.404640f, 0.054156f ),
+			new Vector3f( 0.054237f, -0.404640f, -0.054156f ), new Vector3f( 0.108346f, -0.371198f, -0.141706f ),
+			new Vector3f( -0.195972f, 0.317042f, -0.175177f ), new Vector3f( -0.283522f, 0.262933f, -0.141735f ),
+			new Vector3f( -0.337678f, 0.229463f, -0.054109f ), new Vector3f( -0.337678f, 0.229463f, 0.054109f ),
+			new Vector3f( -0.283522f, 0.262933f, 0.141735f ), new Vector3f( -0.195972f, 0.317042f, 0.175177f ),
+			new Vector3f( -0.108346f, 0.371198f, 0.141706f ), new Vector3f( -0.054237f, 0.404640f, 0.054156f ),
+			new Vector3f( -0.054237f, 0.404640f, -0.054156f ), new Vector3f( -0.108346f, 0.371198f, -0.141706f ),
+			new Vector3f( -0.283522f, -0.262933f, -0.141735f ), new Vector3f( -0.195972f, -0.317042f, -0.175177f ),
+			new Vector3f( -0.108346f, -0.371198f, -0.141706f ), new Vector3f( -0.054237f, -0.404640f, -0.054156f ),
+			new Vector3f( -0.054237f, -0.404640f, 0.054156f ), new Vector3f( -0.108346f, -0.371198f, 0.141706f ),
+			new Vector3f( -0.195972f, -0.317042f, 0.175177f ), new Vector3f( -0.283522f, -0.262933f, 0.141735f ),
+			new Vector3f( -0.337678f, -0.229463f, 0.054109f ), new Vector3f( -0.337678f, -0.229463f, -0.054109f ),
+			new Vector3f( 0.141735f, 0.283522f, -0.262933f ), new Vector3f( 0.175177f, 0.195972f, -0.317042f ),
+			new Vector3f( 0.141706f, 0.108346f, -0.371198f ), new Vector3f( 0.054156f, 0.054237f, -0.404640f ),
+			new Vector3f( -0.054156f, 0.054237f, -0.404640f ), new Vector3f( -0.141706f, 0.108346f, -0.371198f ),
+			new Vector3f( -0.175177f, 0.195972f, -0.317042f ), new Vector3f( -0.141735f, 0.283522f, -0.262933f ),
+			new Vector3f( -0.054109f, 0.337678f, -0.229463f ), new Vector3f( 0.054109f, 0.337678f, -0.229463f ),
+			new Vector3f( 0.175177f, 0.195972f, 0.317042f ), new Vector3f( 0.141735f, 0.283522f, 0.262933f ), new Vector3f( 0.054109f, 0.337678f, 0.229463f ),
+			new Vector3f( -0.054109f, 0.337678f, 0.229463f ), new Vector3f( -0.141735f, 0.283522f, 0.262933f ),
+			new Vector3f( -0.175177f, 0.195972f, 0.317042f ), new Vector3f( -0.141706f, 0.108346f, 0.371198f ),
+			new Vector3f( -0.054156f, 0.054237f, 0.404640f ), new Vector3f( 0.054156f, 0.054237f, 0.404640f ), new Vector3f( 0.141706f, 0.108346f, 0.371198f ),
 			new Vector3f( 0.175177f, -0.195972f, -0.317042f ), new Vector3f( 0.141735f, -0.283522f, -0.262933f ),
 			new Vector3f( 0.054109f, -0.337678f, -0.229463f ), new Vector3f( -0.054109f, -0.337678f, -0.229463f ),
 			new Vector3f( -0.141735f, -0.283522f, -0.262933f ), new Vector3f( -0.175177f, -0.195972f, -0.317042f ),
@@ -72,14 +70,13 @@ public class Icosidodecahedron extends Model
 			new Vector3f( -0.175177f, -0.195972f, 0.317042f ), new Vector3f( -0.141735f, -0.283522f, 0.262933f ),
 			new Vector3f( -0.054109f, -0.337678f, 0.229463f ), new Vector3f( 0.054109f, -0.337678f, 0.229463f ) };
 
-	private static final Vector3f[] norms =
-	{ new Vector3f( 0.850651f, 0.000000f, -0.525731f ), new Vector3f( -0.850651f, 0.000000f, -0.525731f ), new Vector3f( 0.850651f, -0.000000f, 0.525731f ),
-			new Vector3f( -0.850651f, -0.000000f, 0.525731f ), new Vector3f( 0.525731f, 0.850651f, 0.000000f ),
-			new Vector3f( 0.525731f, -0.850651f, 0.000000f ), new Vector3f( -0.525731f, 0.850651f, 0.000000f ),
-			new Vector3f( -0.525731f, -0.850651f, 0.000000f ), new Vector3f( -0.000000f, 0.525731f, -0.850651f ),
-			new Vector3f( -0.000000f, 0.525731f, 0.850651f ), new Vector3f( 0.000000f, -0.525731f, -0.850651f ),
-			new Vector3f( -0.000000f, -0.525731f, 0.850651f ), new Vector3f( 1.000000f, 0.000000f, 0.000000f ),
-			new Vector3f( -1.000000f, 0.000000f, 0.000000f ), new Vector3f( 0.809017f, 0.500000f, 0.309017f ),
+	private static final Vector3f[] norms = { new Vector3f( 0.850651f, 0.000000f, -0.525731f ), new Vector3f( -0.850651f, 0.000000f, -0.525731f ),
+			new Vector3f( 0.850651f, -0.000000f, 0.525731f ), new Vector3f( -0.850651f, -0.000000f, 0.525731f ),
+			new Vector3f( 0.525731f, 0.850651f, 0.000000f ), new Vector3f( 0.525731f, -0.850651f, 0.000000f ),
+			new Vector3f( -0.525731f, 0.850651f, 0.000000f ), new Vector3f( -0.525731f, -0.850651f, 0.000000f ),
+			new Vector3f( -0.000000f, 0.525731f, -0.850651f ), new Vector3f( -0.000000f, 0.525731f, 0.850651f ),
+			new Vector3f( 0.000000f, -0.525731f, -0.850651f ), new Vector3f( -0.000000f, -0.525731f, 0.850651f ),
+			new Vector3f( 1.000000f, 0.000000f, 0.000000f ), new Vector3f( -1.000000f, 0.000000f, 0.000000f ), new Vector3f( 0.809017f, 0.500000f, 0.309017f ),
 			new Vector3f( 0.809017f, 0.500000f, -0.309017f ), new Vector3f( 0.809017f, -0.500000f, -0.309017f ),
 			new Vector3f( 0.809017f, -0.500000f, 0.309017f ), new Vector3f( -0.809017f, 0.500000f, -0.309017f ),
 			new Vector3f( -0.809017f, 0.500000f, 0.309017f ), new Vector3f( 0.000000f, 1.000000f, 0.000000f ),
@@ -105,28 +102,27 @@ public class Icosidodecahedron extends Model
 			new Vector3f( 0.000000f, 0.934172f, 0.356822f ), new Vector3f( -0.000000f, -0.934172f, -0.356822f ),
 			new Vector3f( 0.000000f, -0.934172f, 0.356822f ) };
 
-	private static final Face[] face =
-	{ new Face( new Vector3f( 3, 4, 1 ), new Vector3f( 1, 1, 1 ), -1 ), new Face( new Vector3f( 4, 5, 10 ), new Vector3f( 1, 1, 1 ), -1 ),
-			new Face( new Vector3f( 5, 6, 9 ), new Vector3f( 1, 1, 1 ), -1 ), new Face( new Vector3f( 6, 7, 8 ), new Vector3f( 1, 1, 1 ), -1 ),
-			new Face( new Vector3f( 13, 14, 12 ), new Vector3f( 2, 2, 2 ), -1 ), new Face( new Vector3f( 14, 15, 11 ), new Vector3f( 2, 2, 2 ), -1 ),
-			new Face( new Vector3f( 15, 16, 20 ), new Vector3f( 2, 2, 2 ), -1 ), new Face( new Vector3f( 16, 17, 19 ), new Vector3f( 2, 2, 2 ), -1 ),
-			new Face( new Vector3f( 23, 24, 21 ), new Vector3f( 3, 3, 3 ), -1 ), new Face( new Vector3f( 24, 25, 30 ), new Vector3f( 3, 3, 3 ), -1 ),
-			new Face( new Vector3f( 25, 26, 29 ), new Vector3f( 3, 3, 3 ), -1 ), new Face( new Vector3f( 26, 27, 28 ), new Vector3f( 3, 3, 3 ), -1 ),
-			new Face( new Vector3f( 33, 34, 32 ), new Vector3f( 4, 4, 4 ), -1 ), new Face( new Vector3f( 34, 35, 31 ), new Vector3f( 4, 4, 4 ), -1 ),
-			new Face( new Vector3f( 35, 36, 40 ), new Vector3f( 4, 4, 4 ), -1 ), new Face( new Vector3f( 36, 37, 39 ), new Vector3f( 4, 4, 4 ), -1 ),
-			new Face( new Vector3f( 43, 44, 41 ), new Vector3f( 5, 5, 5 ), -1 ), new Face( new Vector3f( 44, 45, 50 ), new Vector3f( 5, 5, 5 ), -1 ),
-			new Face( new Vector3f( 45, 46, 49 ), new Vector3f( 5, 5, 5 ), -1 ), new Face( new Vector3f( 46, 47, 48 ), new Vector3f( 5, 5, 5 ), -1 ),
-			new Face( new Vector3f( 53, 54, 51 ), new Vector3f( 6, 6, 6 ), -1 ), new Face( new Vector3f( 54, 55, 60 ), new Vector3f( 6, 6, 6 ), -1 ),
-			new Face( new Vector3f( 55, 56, 59 ), new Vector3f( 6, 6, 6 ), -1 ), new Face( new Vector3f( 56, 57, 58 ), new Vector3f( 6, 6, 6 ), -1 ),
-			new Face( new Vector3f( 63, 64, 62 ), new Vector3f( 7, 7, 7 ), -1 ), new Face( new Vector3f( 64, 65, 61 ), new Vector3f( 7, 7, 7 ), -1 ),
-			new Face( new Vector3f( 65, 66, 70 ), new Vector3f( 7, 7, 7 ), -1 ), new Face( new Vector3f( 66, 67, 69 ), new Vector3f( 7, 7, 7 ), -1 ),
-			new Face( new Vector3f( 73, 74, 72 ), new Vector3f( 8, 8, 8 ), -1 ), new Face( new Vector3f( 74, 75, 71 ), new Vector3f( 8, 8, 8 ), -1 ),
-			new Face( new Vector3f( 75, 76, 80 ), new Vector3f( 8, 8, 8 ), -1 ), new Face( new Vector3f( 76, 77, 79 ), new Vector3f( 8, 8, 8 ), -1 ),
-			new Face( new Vector3f( 83, 84, 82 ), new Vector3f( 9, 9, 9 ), -1 ), new Face( new Vector3f( 84, 85, 81 ), new Vector3f( 9, 9, 9 ), -1 ),
-			new Face( new Vector3f( 85, 86, 89 ), new Vector3f( 9, 9, 9 ), -1 ), new Face( new Vector3f( 86, 87, 89 ), new Vector3f( 9, 9, 9 ), -1 ),
-			new Face( new Vector3f( 93, 94, 92 ), new Vector3f( 10, 10, 10 ), -1 ), new Face( new Vector3f( 94, 95, 91 ), new Vector3f( 10, 10, 10 ), -1 ),
-			new Face( new Vector3f( 95, 96, 100 ), new Vector3f( 10, 10, 10 ), -1 ), new Face( new Vector3f( 96, 97, 98 ), new Vector3f( 10, 10, 10 ), -1 ),
-			new Face( new Vector3f( 103, 104, 102 ), new Vector3f( 11, 11, 11 ), -1 ),
+	private static final Face[] face = { new Face( new Vector3f( 3, 4, 1 ), new Vector3f( 1, 1, 1 ), -1 ),
+			new Face( new Vector3f( 4, 5, 10 ), new Vector3f( 1, 1, 1 ), -1 ), new Face( new Vector3f( 5, 6, 9 ), new Vector3f( 1, 1, 1 ), -1 ),
+			new Face( new Vector3f( 6, 7, 8 ), new Vector3f( 1, 1, 1 ), -1 ), new Face( new Vector3f( 13, 14, 12 ), new Vector3f( 2, 2, 2 ), -1 ),
+			new Face( new Vector3f( 14, 15, 11 ), new Vector3f( 2, 2, 2 ), -1 ), new Face( new Vector3f( 15, 16, 20 ), new Vector3f( 2, 2, 2 ), -1 ),
+			new Face( new Vector3f( 16, 17, 19 ), new Vector3f( 2, 2, 2 ), -1 ), new Face( new Vector3f( 23, 24, 21 ), new Vector3f( 3, 3, 3 ), -1 ),
+			new Face( new Vector3f( 24, 25, 30 ), new Vector3f( 3, 3, 3 ), -1 ), new Face( new Vector3f( 25, 26, 29 ), new Vector3f( 3, 3, 3 ), -1 ),
+			new Face( new Vector3f( 26, 27, 28 ), new Vector3f( 3, 3, 3 ), -1 ), new Face( new Vector3f( 33, 34, 32 ), new Vector3f( 4, 4, 4 ), -1 ),
+			new Face( new Vector3f( 34, 35, 31 ), new Vector3f( 4, 4, 4 ), -1 ), new Face( new Vector3f( 35, 36, 40 ), new Vector3f( 4, 4, 4 ), -1 ),
+			new Face( new Vector3f( 36, 37, 39 ), new Vector3f( 4, 4, 4 ), -1 ), new Face( new Vector3f( 43, 44, 41 ), new Vector3f( 5, 5, 5 ), -1 ),
+			new Face( new Vector3f( 44, 45, 50 ), new Vector3f( 5, 5, 5 ), -1 ), new Face( new Vector3f( 45, 46, 49 ), new Vector3f( 5, 5, 5 ), -1 ),
+			new Face( new Vector3f( 46, 47, 48 ), new Vector3f( 5, 5, 5 ), -1 ), new Face( new Vector3f( 53, 54, 51 ), new Vector3f( 6, 6, 6 ), -1 ),
+			new Face( new Vector3f( 54, 55, 60 ), new Vector3f( 6, 6, 6 ), -1 ), new Face( new Vector3f( 55, 56, 59 ), new Vector3f( 6, 6, 6 ), -1 ),
+			new Face( new Vector3f( 56, 57, 58 ), new Vector3f( 6, 6, 6 ), -1 ), new Face( new Vector3f( 63, 64, 62 ), new Vector3f( 7, 7, 7 ), -1 ),
+			new Face( new Vector3f( 64, 65, 61 ), new Vector3f( 7, 7, 7 ), -1 ), new Face( new Vector3f( 65, 66, 70 ), new Vector3f( 7, 7, 7 ), -1 ),
+			new Face( new Vector3f( 66, 67, 69 ), new Vector3f( 7, 7, 7 ), -1 ), new Face( new Vector3f( 73, 74, 72 ), new Vector3f( 8, 8, 8 ), -1 ),
+			new Face( new Vector3f( 74, 75, 71 ), new Vector3f( 8, 8, 8 ), -1 ), new Face( new Vector3f( 75, 76, 80 ), new Vector3f( 8, 8, 8 ), -1 ),
+			new Face( new Vector3f( 76, 77, 79 ), new Vector3f( 8, 8, 8 ), -1 ), new Face( new Vector3f( 83, 84, 82 ), new Vector3f( 9, 9, 9 ), -1 ),
+			new Face( new Vector3f( 84, 85, 81 ), new Vector3f( 9, 9, 9 ), -1 ), new Face( new Vector3f( 85, 86, 89 ), new Vector3f( 9, 9, 9 ), -1 ),
+			new Face( new Vector3f( 86, 87, 89 ), new Vector3f( 9, 9, 9 ), -1 ), new Face( new Vector3f( 93, 94, 92 ), new Vector3f( 10, 10, 10 ), -1 ),
+			new Face( new Vector3f( 94, 95, 91 ), new Vector3f( 10, 10, 10 ), -1 ), new Face( new Vector3f( 95, 96, 100 ), new Vector3f( 10, 10, 10 ), -1 ),
+			new Face( new Vector3f( 96, 97, 98 ), new Vector3f( 10, 10, 10 ), -1 ), new Face( new Vector3f( 103, 104, 102 ), new Vector3f( 11, 11, 11 ), -1 ),
 			new Face( new Vector3f( 104, 105, 101 ), new Vector3f( 11, 11, 11 ), -1 ),
 			new Face( new Vector3f( 105, 106, 110 ), new Vector3f( 11, 11, 11 ), -1 ),
 			new Face( new Vector3f( 106, 107, 108 ), new Vector3f( 11, 11, 11 ), -1 ),
@@ -232,20 +228,16 @@ public class Icosidodecahedron extends Model
 			new Face( new Vector3f( 74, 103, 59 ), new Vector3f( 61, 61, 61 ), -1 ), new Face( new Vector3f( 119, 58, 57 ), new Vector3f( 62, 62, 62 ), -1 ),
 			new Face( new Vector3f( 76, 75, 58 ), new Vector3f( 62, 62, 62 ), -1 ) };
 
-	public Icosidodecahedron()
-	{
-		for ( Vector3f v : verts )
-		{
+	public Icosidodecahedron() {
+		for ( Vector3f v : verts ) {
 			this.addVertex( v );
 		}
 
-		for ( Vector3f n : norms )
-		{
+		for ( Vector3f n : norms ) {
 			this.addNormal( n );
 		}
 
-		for ( Face f : face )
-		{
+		for ( Face f : face ) {
 			this.addFace( f );
 		}
 	}

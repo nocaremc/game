@@ -8,16 +8,14 @@ import java.util.Collection;
  * 
  * @author kevin
  */
-public class XMLElementList
-{
+public class XMLElementList {
 	/** The list of elements */
 	private ArrayList<XMLElement> list = new ArrayList<XMLElement>();
 
 	/**
 	 * Create a new list
 	 */
-	public XMLElementList()
-	{
+	public XMLElementList() {
 
 	}
 
@@ -27,8 +25,7 @@ public class XMLElementList
 	 * @param element
 	 *            The element to be added
 	 */
-	public void add( XMLElement element )
-	{
+	public void add( XMLElement element ) {
 		list.add( element );
 	}
 
@@ -37,8 +34,7 @@ public class XMLElementList
 	 * 
 	 * @return The number of elements in the list
 	 */
-	public int size()
-	{
+	public int size() {
 		return list.size();
 	}
 
@@ -49,8 +45,7 @@ public class XMLElementList
 	 *            The index of the element
 	 * @return The element at the specified index
 	 */
-	public XMLElement get( int i )
-	{
+	public XMLElement get( int i ) {
 		return ( XMLElement ) list.get( i );
 	}
 
@@ -61,8 +56,7 @@ public class XMLElementList
 	 *            The element to check for
 	 * @return True if the element is in the list
 	 */
-	public boolean contains( XMLElement element )
-	{
+	public boolean contains( XMLElement element ) {
 		return list.contains( element );
 	}
 
@@ -72,8 +66,7 @@ public class XMLElementList
 	 * @param collection
 	 *            The collection the elements should be added to
 	 */
-	public void addAllTo( Collection<XMLElement> collection )
-	{
+	public void addAllTo( Collection<XMLElement> collection ) {
 		collection.addAll( list );
 	}
 }

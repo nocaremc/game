@@ -20,29 +20,24 @@ import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
 import org.newdawn.slick.util.ResourceLoader;
 
-public class UnicodeFontImpl
-{
+public class UnicodeFontImpl {
 	private UnicodeFont unicodeFont;
 	private Font awtFont;
 	private float fontSize = 24f;
 
-	public UnicodeFontImpl()
-	{
+	public UnicodeFontImpl() {
 	}
 
 	@SuppressWarnings( "unchecked" )
-	private void init()
-	{
+	private void init() {
 		// Get truetype font inputstream
 		InputStream in = ResourceLoader.getResourceAsStream( "/res/font/DejaVuSans.ttf" );
 
 		// Try to create a truetype awtFont from input stream 
-		try
-		{
+		try {
 			awtFont = Font.createFont( Font.TRUETYPE_FONT, in );
 		}
-		catch ( FontFormatException | IOException e1 )
-		{
+		catch ( FontFormatException | IOException e1 ) {
 			System.out.println( "Could not create awtFont" );
 			e1.printStackTrace();
 		}
@@ -60,19 +55,16 @@ public class UnicodeFontImpl
 		unicodeFont.addAsciiGlyphs();
 
 		// Attempt to load font glyps
-		try
-		{
+		try {
 			unicodeFont.loadGlyphs();
 		}
-		catch ( SlickException e )
-		{
+		catch ( SlickException e ) {
 			System.out.println( "Could not load glyphs" );
 			e.printStackTrace();
 		}
 	}
 
-	public UnicodeFontImpl setFontSize( float fontSize )
-	{
+	public UnicodeFontImpl setFontSize( float fontSize ) {
 		UnicodeFontImpl font = new UnicodeFontImpl();
 		font.fontSize = fontSize;
 		font.init();
@@ -82,8 +74,7 @@ public class UnicodeFontImpl
 	/**
 	 * Opening opengl calls before rendering text
 	 */
-	public void renderBegin()
-	{
+	public void renderBegin() {
 		glPushAttrib( GL_TEXTURE_BIT | GL_ENABLE_BIT );
 		glEnable( GL_BLEND );
 		glBlendFunc( GL_ONE, GL_ONE_MINUS_SRC_ALPHA );
@@ -92,14 +83,12 @@ public class UnicodeFontImpl
 	/**
 	 * Ending opengl calls before rendering text
 	 */
-	public void renderEnd()
-	{
+	public void renderEnd() {
 		glDisable( GL_BLEND );
 		glPopAttrib();
 	}
 
-	public void renderGuiButton( GuiButton button )
-	{
+	public void renderGuiButton( GuiButton button ) {
 		/*
 		unicode font wants a Color object of the type in slick
 		I've used primarily opengl's throughout, and wont stop
@@ -123,8 +112,7 @@ public class UnicodeFontImpl
 				button.getText(), slickColor );
 	}
 
-	public UnicodeFont getFont()
-	{
+	public UnicodeFont getFont() {
 		return unicodeFont;
 	}
 }

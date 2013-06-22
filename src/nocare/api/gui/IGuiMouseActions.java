@@ -1,7 +1,6 @@
 package nocare.api.gui;
 
-public interface IGuiMouseActions
-{
+public interface IGuiMouseActions {
 	// Return true if mouse is over bounding box
 	public boolean isMouseOver( int mX, int mY );
 

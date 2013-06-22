@@ -8,14 +8,14 @@ import org.lwjgl.opengl.GL11;
 import nocare.geometry.Model;
 import nocare.util.parser.WavefrontObjectLoader;
 
-public class Level
-{
+public class Level {
 	private String name;
 	private ArrayList<ArrayList<String>> forces;
 	private ArrayList<Model> models;
 
 	// Dimensions of map in pixel precision
-	@SuppressWarnings( "unused" ) // TODO We going to use this? lol
+	@SuppressWarnings( "unused" )
+	// TODO We going to use this? lol
 	private int[] pixelDimensions;
 
 	private float tileSizeX = 8f;
@@ -23,19 +23,17 @@ public class Level
 	private float tileSizeZ = 8.0f;
 
 	// TODO: remove
-	private float zPos=0.0f;
-	
+	private float zPos = 0.0f;
+
 	/**
 	 * I really dont fancy constructors with 50 billion parameters
 	 */
-	public Level()
-	{}
+	public Level() {
+	}
 
-	private ArrayList<Model> initModels( ArrayList<ArrayList<String>> modelList )
-	{
+	private ArrayList<Model> initModels( ArrayList<ArrayList<String>> modelList ) {
 		ArrayList<Model> tmp = new ArrayList<Model>( modelList.size() );
-		for ( int x = 0; x < modelList.size(); x++ )
-		{
+		for ( int x = 0; x < modelList.size(); x++ ) {
 			ArrayList<String> modelData = modelList.get( x );
 			// Load a model, passing path and name
 			Model model = WavefrontObjectLoader.loadModel( modelData.get( 0 ), modelData.get( 1 ) );
@@ -67,72 +65,62 @@ public class Level
 	/*
 	 * Getters
 	 */
-	public ArrayList<Model> getModels()
-	{
+	public ArrayList<Model> getModels() {
 		return models;
 	}
 
-	public ArrayList<ArrayList<String>> getForces()
-	{
+	public ArrayList<ArrayList<String>> getForces() {
 		return forces;
 	}
 
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
 	/*
 	 * Setters
 	 */
-	public void setModels( ArrayList<ArrayList<String>> models )
-	{
+	public void setModels( ArrayList<ArrayList<String>> models ) {
 		this.models = initModels( models );
 	}
 
-	public void setForces( ArrayList<ArrayList<String>> forces )
-	{
+	public void setForces( ArrayList<ArrayList<String>> forces ) {
 		this.forces = forces;
 	}
 
-	public void setName( String name )
-	{
+	public void setName( String name ) {
 		this.name = name;
 	}
 
-	public void setDimensions( int[] dimension )
-	{
+	public void setDimensions( int[] dimension ) {
 		this.pixelDimensions = dimension;
 	}
 
-	public void update()
-	{
+	public void update() {
 		App.getPlayer().update();
 	}
 
-	public void render()
-	{
+	public void render() {
 		// This moves our camera. I haven't the faintest idea why the z translation needs to exist.
 		// Models have zPosition, and its rendered properly, but no matter, a z translation seems to need to take place. -2 minimum.
 		// Set the x position based on character position, with 5.5f offset to approximately center character
-		float cameraPositionX = -(App.getPlayer().getX() - 5.5f);
-		
-		if (Keyboard.isKeyDown( Keyboard.KEY_W ))
+		float cameraPositionX = -( App.getPlayer().getX() - 5.5f );
+
+		if ( Keyboard.isKeyDown( Keyboard.KEY_W ) )
 			zPos++;
-		else if (Keyboard.isKeyDown( Keyboard.KEY_S ))
+		else if ( Keyboard.isKeyDown( Keyboard.KEY_S ) )
 			zPos--;
-		
+
 		// Now translate screen based on our camera position
-		GL11.glTranslatef( cameraPositionX, 0.0f, zPos-2f );
-		
+		GL11.glTranslatef( cameraPositionX, 0.0f, zPos - 2f );
+
 		// Render models in scene
 		// TODO: factor in loaded/unloaded sectors
-		for ( Model m : models )
-		{
+		for ( Model m : models ) {
 
 			m.render();
 		}
-		
+
 		App.getPlayer().render();
 	}
 }

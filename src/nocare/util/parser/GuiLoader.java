@@ -24,14 +24,11 @@ import nocare.util.xml.XMLParser;
 
 import static nocare.util.xml.XMLUtil.*;
 
-public class GuiLoader
-{
-	private static String[] requiredFiles =
-	{ "structure.xml", "buttonActions.lua" };
+public class GuiLoader {
+	private static String[] requiredFiles = { "structure.xml", "buttonActions.lua" };
 
 	// Don't allow instantiation
-	private GuiLoader()
-	{
+	private GuiLoader() {
 	}
 
 	/**
@@ -40,12 +37,10 @@ public class GuiLoader
 	 * @param path
 	 * @return
 	 */
-	public static GuiScreen loadGui( String file )
-	{
+	public static GuiScreen loadGui( String file ) {
 		File f = new File( file );
 
-		if ( f.isDirectory() )
-		{
+		if ( f.isDirectory() ) {
 			return loadGuiPath( file );
 		}
 
@@ -55,12 +50,10 @@ public class GuiLoader
 		// Open given zip file
 		ZipFile zipFile = null;
 
-		try
-		{
+		try {
 			zipFile = new ZipFile( file );
 		}
-		catch ( IOException e )
-		{
+		catch ( IOException e ) {
 			e.printStackTrace();
 		}
 
@@ -74,35 +67,30 @@ public class GuiLoader
 		structure = openZippedStructure( zipFile, zipFile.getEntry( "structure.xml" ) );
 
 		// Print a file list of the zip
-		while ( fileList.hasMoreElements() )
-		{
+		while ( fileList.hasMoreElements() ) {
 			System.out.println( "d" + fileList.nextElement().getName() );
 		}
 
-		try
-		{
+		try {
 			zipFile.close();
 		}
-		catch ( IOException e )
-		{
+		catch ( IOException e ) {
 			e.printStackTrace();
 		}
 
 		System.out.println( "]" );
 
-		return setupGuiScreen(structure, file);
+		return setupGuiScreen( structure, file );
 	}
 
-	private static GuiScreen loadGuiPath( String folder )
-	{
+	private static GuiScreen loadGuiPath( String folder ) {
 		ensureContainsNeededFiles( folder );
 		Structure structure = openStructure( folder );
 
-		return setupGuiScreen(structure, folder);
+		return setupGuiScreen( structure, folder );
 	}
-	
-	private static GuiScreen setupGuiScreen(Structure structure, String path)
-	{
+
+	private static GuiScreen setupGuiScreen( Structure structure, String path ) {
 		GuiScreen g = new GuiScreen();
 		g.setButtons( structure.buttons );
 		g.setBackgroundColor( structure.backgroundColor );
@@ -111,18 +99,14 @@ public class GuiLoader
 		return g;
 	}
 
-	private static void ensureContainsNeededFiles( String folder )
-	{
-		for ( int i = 0; i < requiredFiles.length; i++ )
-		{
+	private static void ensureContainsNeededFiles( String folder ) {
+		for ( int i = 0; i < requiredFiles.length; i++ ) {
 			File f = new File( folder + requiredFiles[i] );
-			try
-			{
+			try {
 				if ( !f.exists() )
 					throw new FileNotFoundException( "Could not locate: " + requiredFiles[i] );
 			}
-			catch ( FileNotFoundException e )
-			{
+			catch ( FileNotFoundException e ) {
 				e.printStackTrace();
 			}
 		}
@@ -135,33 +119,27 @@ public class GuiLoader
 	 * @param fileList
 	 * @throws FileNotFoundException
 	 */
-	private static void ensureContainsNeededFiles( Enumeration<? extends ZipEntry> fileList )
-	{
+	private static void ensureContainsNeededFiles( Enumeration<? extends ZipEntry> fileList ) {
 		List<String> zippedFiles = new ArrayList<String>();
 
-		for ( ; fileList.hasMoreElements(); )
-		{
+		for ( ; fileList.hasMoreElements(); ) {
 			zippedFiles.add( String.valueOf( fileList.nextElement().getName() ) );
 		}
 
-		for ( int i = 0; i < requiredFiles.length; i++ )
-		{
+		for ( int i = 0; i < requiredFiles.length; i++ ) {
 			boolean fileExists = false;
 
-			for ( Iterator<String> iter = zippedFiles.iterator(); iter.hasNext(); )
-			{
+			for ( Iterator<String> iter = zippedFiles.iterator(); iter.hasNext(); ) {
 				String name = iter.next();
 				if ( requiredFiles[i].equals( name ) )
 					fileExists = true;
 			}
 
-			try
-			{
+			try {
 				if ( !fileExists )
 					throw new FileNotFoundException( "Could not locate: " + requiredFiles[i] );
 			}
-			catch ( FileNotFoundException e )
-			{
+			catch ( FileNotFoundException e ) {
 				System.out.println( "Could not locate: " + requiredFiles[i] );
 				e.printStackTrace();
 			}
@@ -169,8 +147,7 @@ public class GuiLoader
 		System.out.println( "\tZip contains required files." );
 	}
 
-	private static Structure parseStructure( XMLElement root )
-	{
+	private static Structure parseStructure( XMLElement root ) {
 		Structure structure = new Structure();
 
 		// Ensure this tag exists, and there is only 1
@@ -180,24 +157,21 @@ public class GuiLoader
 		XMLElement backgroundFile = root.getFirstChild( "background" );
 		structure.backgroundImg = backgroundFile.getAttribute( "value" );
 
-		if (root.hasChild( "backgroundColor" ))
-		{
+		if ( root.hasChild( "backgroundColor" ) ) {
 			XMLElement backgroundColor = root.getFirstChild( "backgroundColor" );
 			int r, g, b, a;
-			try
-			{
+			try {
 				r = backgroundColor.getIntAttribute( "r" );
 				g = backgroundColor.getIntAttribute( "g" );
 				b = backgroundColor.getIntAttribute( "b" );
 				a = backgroundColor.getIntAttribute( "a" );
 				structure.backgroundColor = new Color( r, g, b, a );
 			}
-			catch ( XMLException e )
-			{
+			catch ( XMLException e ) {
 				e.printStackTrace();
 			}
 		}
-		
+
 		// Ensure this tag exists, and there is only 1
 		assertSize( root, "Objects", 1 );
 
@@ -209,14 +183,11 @@ public class GuiLoader
 
 		// For each object, associate with type.
 		XMLElementList buttons = new XMLElementList();
-		for ( int i = 0; i < obs.size(); i++ )
-		{
-			if ( obs.get( i ).getName().equals( "Button" ) )
-			{
+		for ( int i = 0; i < obs.size(); i++ ) {
+			if ( obs.get( i ).getName().equals( "Button" ) ) {
 				buttons.add( obs.get( i ) );
 			}
-			else
-			{
+			else {
 				// More if statements for other obects
 				System.out.println( "Other objects exist: " + obs.get( i ).getName() );
 			}
@@ -227,17 +198,14 @@ public class GuiLoader
 		return structure;
 	}
 
-	private static Structure openStructure( String path )
-	{
+	private static Structure openStructure( String path ) {
 		XMLParser xmlFile = new XMLParser();
 		XMLElement root = null;
 
-		try
-		{
+		try {
 			root = xmlFile.parse( path + "structure.xml" );
 		}
-		catch ( SlickException e )
-		{
+		catch ( SlickException e ) {
 			System.out.println( "GuiLoader: xmlFile failed to parse - " + path + "structure.xml" );
 			e.printStackTrace();
 		}
@@ -245,18 +213,15 @@ public class GuiLoader
 		return parseStructure( root );
 	}
 
-	private static Structure openZippedStructure( ZipFile zipFile, ZipEntry structureFile )
-	{
+	private static Structure openZippedStructure( ZipFile zipFile, ZipEntry structureFile ) {
 		System.out.println( "\tBegin parsing..." );
 		InputStream inputStream = null;
 
 		// Get an input stream for xmlfile from zip file
-		try
-		{
+		try {
 			inputStream = zipFile.getInputStream( structureFile );
 		}
-		catch ( IOException e )
-		{
+		catch ( IOException e ) {
 			System.out.println( "GuiLoader: openZippedStructure - Failed to get structureFile's InputStream from zip file." );
 			e.printStackTrace();
 		}
@@ -265,24 +230,20 @@ public class GuiLoader
 
 		// Open xml file for parsing from the inputstream
 		XMLElement root = null;
-		try
-		{
+		try {
 			root = xmlFile.parse( "structure.xml", inputStream );
 		}
-		catch ( XMLException e )
-		{
+		catch ( XMLException e ) {
 			e.printStackTrace();
 		}
 
 		return parseStructure( root );
 	}
 
-	private static GuiButton[] parseButtons( XMLElementList buttons )
-	{
+	private static GuiButton[] parseButtons( XMLElementList buttons ) {
 		GuiButton[] returnList = new GuiButton[buttons.size()];
 		int lastID = -1;
-		for ( int i = 0; i < buttons.size(); i++ )
-		{
+		for ( int i = 0; i < buttons.size(); i++ ) {
 			GuiButton thisButton = new GuiButton();
 			XMLElement button = buttons.get( i );
 
@@ -290,14 +251,13 @@ public class GuiLoader
 			int id = Integer.valueOf( button.getFirstChild( "id" ).getContent() );
 
 			// Check if duplicate, raise error and increment id
-			if ( id == lastID )
-			{
+			if ( id == lastID ) {
 				System.out.println( "Duplicate Button ID detected" );
 				id += 1;
 			}
 
 			lastID = id;
-			
+
 			// Set ID
 			thisButton.setID( id );
 			// Set Width
@@ -313,73 +273,61 @@ public class GuiLoader
 			int xOffset;
 
 			// Setup position offsets
-			if ( button.getFirstChild( "x" ).hasAttribute( "offset" ) )
-			{
+			if ( button.getFirstChild( "x" ).hasAttribute( "offset" ) ) {
 				xOffset = Integer.valueOf( button.getFirstChild( "x" ).getAttribute( "offset" ) );
 			}
-			else
-			{
+			else {
 				xOffset = 0;
 			}
 
 			String y = button.getFirstChild( "y" ).getContent();
 			int yOffset;
 
-			if ( button.getFirstChild( "y" ).hasAttribute( "offset" ) )
-			{
+			if ( button.getFirstChild( "y" ).hasAttribute( "offset" ) ) {
 				yOffset = Integer.valueOf( button.getFirstChild( "y" ).getAttribute( "offset" ) );
 			}
-			else
-			{
+			else {
 				yOffset = 0;
 			}
 
 			// Set position of button, taking strings as shortcut options
-			if ( x.equals( "center" ) )
-			{
+			if ( x.equals( "center" ) ) {
 				int width = App.getScreenWidth();
 				int buttonWidth = thisButton.getWidth();
 				int center = ( width / 2 ) - ( buttonWidth / 2 );
 
 				thisButton.setX( center + xOffset );
 			}
-			else if ( x.equals( "max" ) )
-			{
+			else if ( x.equals( "max" ) ) {
 				int width = App.getScreenWidth();
 				int buttonWidth = thisButton.getWidth();
 
 				thisButton.setX( width - buttonWidth + xOffset );
 			}
-			else if ( x.equals( "min" ) )
-			{
+			else if ( x.equals( "min" ) ) {
 				thisButton.setX( 0 + xOffset );
 			}
-			else
-			{
+			else {
 				thisButton.setX( Integer.valueOf( x ) + xOffset );
 			}
 
-			if ( y.equals( "center" ) )
-			{
+			if ( y.equals( "center" ) ) {
 				int height = App.getScreenHeight();
 				int buttonHeight = thisButton.getHeight();
 				int center = ( height / 2 ) - ( buttonHeight / 2 );
 
 				thisButton.setY( center + yOffset );
 			}
-			else if ( y.equals( "min" ) )
-			{
+			else if ( y.equals( "min" ) ) {
 				thisButton.setY( 0 + yOffset );
 			}
-			else if ( y.equals( "max" ) )
-			{
+			else if ( y.equals( "max" ) ) {
 				int height = App.getScreenHeight();
 				int buttonHeight = thisButton.getHeight();
 
 				thisButton.setY( height - buttonHeight + yOffset );
 			}
-			else
-			{
+			else {
 				thisButton.setY( Integer.valueOf( y ) + yOffset );
 			}
 
@@ -391,7 +339,7 @@ public class GuiLoader
 			rgb[3] = Integer.valueOf( button.getFirstChild( "backgroundColor" ).getAttribute( "a" ) );
 
 			thisButton.setBackgroundColor( new Color( rgb[0], rgb[1], rgb[2], rgb[3] ) );
-			
+
 			// Hover background
 			int[] rgbOver = new int[4];
 			rgbOver[0] = Integer.valueOf( button.getFirstChild( "backgroundColorOver" ).getAttribute( "r" ) );
@@ -400,7 +348,7 @@ public class GuiLoader
 			rgbOver[3] = Integer.valueOf( button.getFirstChild( "backgroundColorOver" ).getAttribute( "a" ) );
 
 			thisButton.setBackgroundColorOver( new Color( rgbOver[0], rgbOver[1], rgbOver[2], rgbOver[3] ) );
-			
+
 			// Gradient Start
 			int[] rgbStart = new int[4];
 			rgbStart[0] = Integer.valueOf( button.getFirstChild( "gradient" ).getFirstChild( "start" ).getAttribute( "r" ) );
@@ -438,8 +386,7 @@ public class GuiLoader
 		return returnList;
 	}
 
-	private static class Structure
-	{
+	private static class Structure {
 		@SuppressWarnings( "unused" )
 		public String backgroundImg;
 		public Color backgroundColor;

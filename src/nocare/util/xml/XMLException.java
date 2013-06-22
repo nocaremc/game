@@ -9,8 +9,7 @@ import org.newdawn.slick.SlickException;
  * 
  * @author kevin
  */
-public class XMLException extends SlickException
-{
+public class XMLException extends SlickException {
 
 	/**
 	 * 
@@ -23,8 +22,7 @@ public class XMLException extends SlickException
 	 * @param message
 	 *            The message describing the failure
 	 */
-	public XMLException( String message )
-	{
+	public XMLException( String message ) {
 		super( message );
 	}
 
@@ -36,8 +34,7 @@ public class XMLException extends SlickException
 	 * @param e
 	 *            The exception causing this failure
 	 */
-	public XMLException( String message, Throwable e )
-	{
+	public XMLException( String message, Throwable e ) {
 		super( message, e );
 	}
 

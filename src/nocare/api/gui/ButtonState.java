@@ -1,6 +1,5 @@
 package nocare.api.gui;
 
-public enum ButtonState
-{
+public enum ButtonState {
 	CLICKED, RELEASED, OVER, NONE;
 }

@@ -1,15 +1,13 @@
 package nocare.util.xml;
 
-public class XMLUtil
-{
+public class XMLUtil {
 	/**
 	 * Fail the test
 	 * 
 	 * @param message
 	 *            The message to describe the failure
 	 */
-	public static void fail( String message )
-	{
+	public static void fail( String message ) {
 		throw new RuntimeException( message );
 	}
 
@@ -19,10 +17,8 @@ public class XMLUtil
 	 * @param object1
 	 *            The object to test
 	 */
-	public static void assertNotNull( Object object1 )
-	{
-		if ( object1 == null )
-		{
+	public static void assertNotNull( Object object1 ) {
+		if ( object1 == null ) {
 			throw new RuntimeException( "TEST FAILS: " + object1 + " must not be null" );
 		}
 	}
@@ -35,10 +31,8 @@ public class XMLUtil
 	 * @param a2
 	 *            The second value to compare
 	 */
-	public static void assertEquals( float a1, float a2 )
-	{
-		if ( a1 != a2 )
-		{
+	public static void assertEquals( float a1, float a2 ) {
+		if ( a1 != a2 ) {
 			throw new RuntimeException( "TEST FAILS: " + a1 + " should be " + a2 );
 		}
 	}
@@ -51,10 +45,8 @@ public class XMLUtil
 	 * @param a2
 	 *            The second value to compare
 	 */
-	public static void assertEquals( int a1, int a2 )
-	{
-		if ( a1 != a2 )
-		{
+	public static void assertEquals( int a1, int a2 ) {
+		if ( a1 != a2 ) {
 			throw new RuntimeException( "TEST FAILS: " + a1 + " should be " + a2 );
 		}
 	}
@@ -67,20 +59,16 @@ public class XMLUtil
 	 * @param a2
 	 *            The second value to compare
 	 */
-	public static void assertEquals( Object a1, Object a2 )
-	{
-		if ( !a1.equals( a2 ) )
-		{
+	public static void assertEquals( Object a1, Object a2 ) {
+		if ( !a1.equals( a2 ) ) {
 			throw new RuntimeException( "TEST FAILS: " + a1 + " should be " + a2 );
 		}
 	}
-	
-	public static void assertSize( XMLElement root, String child, int size )
-	{
-		assertNotNull(root.getChildrenByName( child ));
-		if(root.getChildrenByName( child ).size() != size)
-		{
-			throw new RuntimeException("TEST FAILS: " + child + " size of " + root.getChildrenByName( child ).size() + " should be " + size);
+
+	public static void assertSize( XMLElement root, String child, int size ) {
+		assertNotNull( root.getChildrenByName( child ) );
+		if ( root.getChildrenByName( child ).size() != size ) {
+			throw new RuntimeException( "TEST FAILS: " + child + " size of " + root.getChildrenByName( child ).size() + " should be " + size );
 		}
 	}
 }

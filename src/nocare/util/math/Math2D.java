@@ -1,7 +1,6 @@
 package nocare.util.math;
 
-public class Math2D
-{
+public class Math2D {
 
 	/**
 	 * Compares object 2 to object 1.
@@ -24,49 +23,39 @@ public class Math2D
 	 * @param height2 - Subject Height
 	 * @return Boolean - object 1 contains object 2
 	 */
-	public static boolean quadContains( float xPos1, float yPos1, float width1, float height1, float xPos2, float yPos2, float width2, float height2 )
-	{
+	public static boolean quadContains( float xPos1, float yPos1, float width1, float height1, float xPos2, float yPos2, float width2, float height2 ) {
 		Square s1 = new Square( xPos1, yPos1, width1, height1 );
 		Square s2 = new Square( xPos2, yPos2, width2, height2 );
 
 		// If any value is null
 		if ( Float.valueOf( xPos1 ) == null || Float.valueOf( xPos2 ) == null || Float.valueOf( yPos1 ) == null || Float.valueOf( yPos2 ) == null
-				|| Float.valueOf( width1 ) == null || Float.valueOf( width2 ) == null || Float.valueOf( height1 ) == null || Float.valueOf( height2 ) == null )
-		{
-			try
-			{
+				|| Float.valueOf( width1 ) == null || Float.valueOf( width2 ) == null || Float.valueOf( height1 ) == null || Float.valueOf( height2 ) == null ) {
+			try {
 				throw new NullPointerException( "quadContains() was passed null value" );
 			}
-			catch ( Exception e )
-			{
+			catch ( Exception e ) {
 				e.printStackTrace();
 			}
 		}
 
 		// If either object doesnt have dimensions (is a point)
-		if ( ( width1 == 0 && height1 == 0 ) || ( width2 == 0 && height2 == 0 ) )
-		{
+		if ( ( width1 == 0 && height1 == 0 ) || ( width2 == 0 && height2 == 0 ) ) {
 			// If first object is a point, throw exception (points can't contain anything)
-			if ( width1 == 0 && height1 == 0 )
-			{
-				try
-				{
+			if ( width1 == 0 && height1 == 0 ) {
+				try {
 					throw new Exception( "Quadcontains used incorrectly, usage: quadContains(quad, point||quad)" );
 				}
-				catch ( Exception e )
-				{
+				catch ( Exception e ) {
 					e.printStackTrace();
 				}
 
 				return false;
 			}
-			else
-			{
+			else {
 				return quadContainsPoint( s1, ( Point ) s2 );
 			}
 		}
-		else
-		{
+		else {
 			return quadContainsQuad( s1, s2 );
 		}
 	}
@@ -76,8 +65,7 @@ public class Math2D
 	 * @param s2
 	 * @return Boolean - Square1 contains Square2
 	 */
-	public static boolean quadContainsQuad( Square s1, Square s2 )
-	{
+	public static boolean quadContainsQuad( Square s1, Square s2 ) {
 		return ( s2.x > s1.x && s2.x + s2.w < s1.x + s1.w && s2.y > s1.y && s2.y + s2.h < s1.y + s1.h );
 	}
 
@@ -86,29 +74,24 @@ public class Math2D
 	 * @param p
 	 * @return Boolean - Square1 contains Point
 	 */
-	public static boolean quadContainsPoint( Square s, Point p )
-	{
+	public static boolean quadContainsPoint( Square s, Point p ) {
 		return ( p.x > s.x && p.x < s.x + s.w && p.y > s.y && p.y < s.y + s.h );
 	}
 
-	public static class Square extends Point
-	{
+	public static class Square extends Point {
 		public float w, h;
 
-		public Square( float x, float y, float w, float h )
-		{
+		public Square( float x, float y, float w, float h ) {
 			super( x, y );
 			this.w = w;
 			this.h = h;
 		}
 	}
 
-	public static class Point
-	{
+	public static class Point {
 		public float x, y;
 
-		public Point( float x, float y )
-		{
+		public Point( float x, float y ) {
 			this.x = x;
 			this.y = y;
 		}

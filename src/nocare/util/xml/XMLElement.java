@@ -16,8 +16,7 @@ import static nocare.util.xml.XMLUtil.*;
  * 
  * @author kevin
  */
-public class XMLElement
-{
+public class XMLElement {
 	/** The Java DOM implementation XML element */
 	private Element dom;
 	/** The list of children initialised on first access */
@@ -31,8 +30,7 @@ public class XMLElement
 	 * @param xmlElement
 	 *            The DOM element to present
 	 */
-	XMLElement( Element xmlElement )
-	{
+	XMLElement( Element xmlElement ) {
 		dom = xmlElement;
 		name = dom.getTagName();
 	}
@@ -42,13 +40,11 @@ public class XMLElement
 	 * 
 	 * @return The names of the elements specified
 	 */
-	public String[] getAttributeNames()
-	{
+	public String[] getAttributeNames() {
 		NamedNodeMap map = dom.getAttributes();
 		String[] names = new String[map.getLength()];
 
-		for ( int i = 0; i < names.length; i++ )
-		{
+		for ( int i = 0; i < names.length; i++ ) {
 			names[i] = map.item( i ).getNodeName();
 		}
 
@@ -60,8 +56,7 @@ public class XMLElement
 	 * 
 	 * @return The name of this element
 	 */
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
@@ -72,8 +67,7 @@ public class XMLElement
 	 *            The name of the attribute whose value should be retrieved
 	 * @return The value given for the attribute
 	 */
-	public String getAttribute( String name )
-	{
+	public String getAttribute( String name ) {
 		return dom.getAttribute( name );
 	}
 
@@ -86,11 +80,9 @@ public class XMLElement
 	 *            The default value to return if the attribute is specified
 	 * @return The value given for the attribute
 	 */
-	public String getAttribute( String name, String def )
-	{
+	public String getAttribute( String name, String def ) {
 		String value = dom.getAttribute( name );
-		if ( ( value == null ) || ( value.length() == 0 ) )
-		{
+		if ( ( value == null ) || ( value.length() == 0 ) ) {
 			return def;
 		}
 
@@ -107,14 +99,11 @@ public class XMLElement
 	 * @throws XMLException
 	 *             Indicates a failure to convert the value into an integer
 	 */
-	public int getIntAttribute( String name ) throws XMLException
-	{
-		try
-		{
+	public int getIntAttribute( String name ) throws XMLException {
+		try {
 			return Integer.parseInt( getAttribute( name ) );
 		}
-		catch ( NumberFormatException e )
-		{
+		catch ( NumberFormatException e ) {
 			throw new XMLException( "Value read: '" + getAttribute( name ) + "' is not an integer", e );
 		}
 	}
@@ -131,14 +120,11 @@ public class XMLElement
 	 * @throws XMLException
 	 *             Indicates a failure to convert the value into an integer
 	 */
-	public int getIntAttribute( String name, int def ) throws XMLException
-	{
-		try
-		{
+	public int getIntAttribute( String name, int def ) throws XMLException {
+		try {
 			return Integer.parseInt( getAttribute( name, "" + def ) );
 		}
-		catch ( NumberFormatException e )
-		{
+		catch ( NumberFormatException e ) {
 			throw new XMLException( "Value read: '" + getAttribute( name, "" + def ) + "' is not an integer", e );
 		}
 	}
@@ -153,14 +139,11 @@ public class XMLElement
 	 * @throws XMLException
 	 *             Indicates a failure to convert the value into an double
 	 */
-	public double getDoubleAttribute( String name ) throws XMLException
-	{
-		try
-		{
+	public double getDoubleAttribute( String name ) throws XMLException {
+		try {
 			return Double.parseDouble( getAttribute( name ) );
 		}
-		catch ( NumberFormatException e )
-		{
+		catch ( NumberFormatException e ) {
 			throw new XMLException( "Value read: '" + getAttribute( name ) + "' is not a double", e );
 		}
 	}
@@ -177,14 +160,11 @@ public class XMLElement
 	 * @throws XMLException
 	 *             Indicates a failure to convert the value into an double
 	 */
-	public double getDoubleAttribute( String name, double def ) throws XMLException
-	{
-		try
-		{
+	public double getDoubleAttribute( String name, double def ) throws XMLException {
+		try {
 			return Double.parseDouble( getAttribute( name, "" + def ) );
 		}
-		catch ( NumberFormatException e )
-		{
+		catch ( NumberFormatException e ) {
 			throw new XMLException( "Value read: '" + getAttribute( name, "" + def ) + "' is not a double", e );
 		}
 	}
@@ -199,15 +179,12 @@ public class XMLElement
 	 * @throws XMLException
 	 *             Indicates a failure to convert the value into an boolean
 	 */
-	public boolean getBooleanAttribute( String name ) throws XMLException
-	{
+	public boolean getBooleanAttribute( String name ) throws XMLException {
 		String value = getAttribute( name );
-		if ( value.equalsIgnoreCase( "true" ) )
-		{
+		if ( value.equalsIgnoreCase( "true" ) ) {
 			return true;
 		}
-		if ( value.equalsIgnoreCase( "false" ) )
-		{
+		if ( value.equalsIgnoreCase( "false" ) ) {
 			return false;
 		}
 
@@ -226,15 +203,12 @@ public class XMLElement
 	 * @throws XMLException
 	 *             Indicates a failure to convert the value into an boolean
 	 */
-	public boolean getBooleanAttribute( String name, boolean def ) throws XMLException
-	{
+	public boolean getBooleanAttribute( String name, boolean def ) throws XMLException {
 		String value = getAttribute( name, "" + def );
-		if ( value.equalsIgnoreCase( "true" ) )
-		{
+		if ( value.equalsIgnoreCase( "true" ) ) {
 			return true;
 		}
-		if ( value.equalsIgnoreCase( "false" ) )
-		{
+		if ( value.equalsIgnoreCase( "false" ) ) {
 			return false;
 		}
 
@@ -246,15 +220,12 @@ public class XMLElement
 	 * 
 	 * @return The text content of the node
 	 */
-	public String getContent()
-	{
+	public String getContent() {
 		String content = "";
 
 		NodeList list = dom.getChildNodes();
-		for ( int i = 0; i < list.getLength(); i++ )
-		{
-			if ( list.item( i ) instanceof Text )
-			{
+		for ( int i = 0; i < list.getLength(); i++ ) {
+			if ( list.item( i ) instanceof Text ) {
 				content += ( list.item( i ).getNodeValue() );
 			}
 		}
@@ -267,20 +238,16 @@ public class XMLElement
 	 * 
 	 * @return The list of children for this node
 	 */
-	public XMLElementList getChildren()
-	{
-		if ( children != null )
-		{
+	public XMLElementList getChildren() {
+		if ( children != null ) {
 			return children;
 		}
 
 		NodeList list = dom.getChildNodes();
 		children = new XMLElementList();
 
-		for ( int i = 0; i < list.getLength(); i++ )
-		{
-			if ( list.item( i ) instanceof Element )
-			{
+		for ( int i = 0; i < list.getLength(); i++ ) {
+			if ( list.item( i ) instanceof Element ) {
 				children.add( new XMLElement( ( Element ) list.item( i ) ) );
 			}
 		}
@@ -295,15 +262,12 @@ public class XMLElement
 	 *            The name of the element type that should be retrieved
 	 * @return A list of elements
 	 */
-	public XMLElementList getChildrenByName( String name )
-	{
+	public XMLElementList getChildrenByName( String name ) {
 		XMLElementList selected = new XMLElementList();
 		XMLElementList children = getChildren();
 
-		for ( int i = 0; i < children.size(); i++ )
-		{
-			if ( children.get( i ).getName().equals( name ) )
-			{
+		for ( int i = 0; i < children.size(); i++ ) {
+			if ( children.get( i ).getName().equals( name ) ) {
 				selected.add( children.get( i ) );
 			}
 		}
@@ -314,13 +278,11 @@ public class XMLElement
 	/**
 	 * @see java.lang.Object#toString()
 	 */
-	public String toString()
-	{
+	public String toString() {
 		String value = "[XML " + getName();
 		String[] attrs = getAttributeNames();
 
-		for ( int i = 0; i < attrs.length; i++ )
-		{
+		for ( int i = 0; i < attrs.length; i++ ) {
 			value += " " + attrs[i] + "=" + getAttribute( attrs[i] );
 		}
 
@@ -335,8 +297,7 @@ public class XMLElement
 	 * @param child
 	 * @return XMLElement - first child
 	 */
-	public XMLElement getFirstChild( String child )
-	{
+	public XMLElement getFirstChild( String child ) {
 		// Ensure children exist
 		assertNotNull( this.getChildrenByName( child ) );
 		assertEquals( this.getChildrenByName( child ).size(), 1 );
@@ -349,13 +310,10 @@ public class XMLElement
 	 * @param child
 	 * @return boolean
 	 */
-	public boolean hasChild( String child )
-	{
+	public boolean hasChild( String child ) {
 		XMLElementList children = this.getChildren();
-		for ( int i = 0; i < children.size(); i++ )
-		{
-			if ( children.get( i ).getName().equals( child ) )
-			{
+		for ( int i = 0; i < children.size(); i++ ) {
+			if ( children.get( i ).getName().equals( child ) ) {
 				return true;
 			}
 		}
@@ -368,18 +326,15 @@ public class XMLElement
 	 * @param string
 	 * @return boolean
 	 */
-	public boolean hasAttribute( String string )
-	{
+	public boolean hasAttribute( String string ) {
 		String[] attributes = this.getAttributeNames();
-		
-		for(String attrib : attributes)
-		{
-			if(attrib.equals( string ))
-			{
+
+		for ( String attrib : attributes ) {
+			if ( attrib.equals( string ) ) {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 }

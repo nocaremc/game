@@ -11,22 +11,18 @@ import nocare.api.gui.IGuiHandleInput;
 import nocare.gui.input.MouseListener;
 import nocare.util.GeneralUtils;
 
-public class GuiScreen extends Gui implements IGuiHandleInput
-{
+public class GuiScreen extends Gui implements IGuiHandleInput {
 	private GuiButton[] buttons;
 	private MouseListener mouse;
 	private String resourcePath;
 	private String name;
 
-	public GuiScreen()
-	{
+	public GuiScreen() {
 		mouse = new MouseListener();
 	}
 
-	public void init()
-	{
-		for ( GuiButton button : buttons )
-		{
+	public void init() {
+		for ( GuiButton button : buttons ) {
 			mouse.addObject( button );
 		}
 	}
@@ -34,50 +30,43 @@ public class GuiScreen extends Gui implements IGuiHandleInput
 	/*
 	 * Setters
 	 */
-	public void setName(String name)
-	{
+	public void setName( String name ) {
 		this.name = name;
 	}
-	public void setButtons( GuiButton[] buttons )
-	{
+
+	public void setButtons( GuiButton[] buttons ) {
 		this.buttons = buttons;
 	}
 
-	public void setResourcePath( String path )
-	{
+	public void setResourcePath( String path ) {
 		resourcePath = path;
 	}
 
 	/*
 	 * Getters
 	 */
-	
-	public String getName()
-	{
+
+	public String getName() {
 		return name;
 	}
-	public Gui[] getButtons()
-	{
+
+	public Gui[] getButtons() {
 		return buttons;
 	}
 
-	public String getResourcePath()
-	{
+	public String getResourcePath() {
 		return resourcePath;
 	}
 
-	public void update()
-	{
+	public void update() {
 		mouse.update();
-		for ( GuiButton button : buttons )
-		{
+		for ( GuiButton button : buttons ) {
 			handleInput( button );
 		}
 	}
 
 	@Override
-	public void render()
-	{
+	public void render() {
 		int width = App.getScreenWidth();
 		int height = App.getScreenHeight();
 
@@ -92,9 +81,9 @@ public class GuiScreen extends Gui implements IGuiHandleInput
 		// Draw background
 		glBegin( GL_QUADS );
 		{
-			if (backgroundColor != null)
+			if ( backgroundColor != null )
 				GeneralUtils.glColorShortcut( backgroundColor );
-			
+
 			glVertex2f( 0, 0 );
 			glVertex2f( 0, height );
 			glVertex2f( width, height );
@@ -102,8 +91,7 @@ public class GuiScreen extends Gui implements IGuiHandleInput
 		}
 		glEnd();
 
-		for ( GuiButton b : buttons )
-		{
+		for ( GuiButton b : buttons ) {
 			b.render();
 			//System.out.println(b.isMouseOver());
 
@@ -112,8 +100,7 @@ public class GuiScreen extends Gui implements IGuiHandleInput
 		// I don't want to set the same opengl settings for every button. 
 		// We can reduce a least a tiny bit of overhead by doing it in one go
 		font.renderBegin();
-		for ( GuiButton b : buttons )
-		{
+		for ( GuiButton b : buttons ) {
 			b.renderText();
 		}
 		font.renderEnd();
@@ -125,10 +112,8 @@ public class GuiScreen extends Gui implements IGuiHandleInput
 	}
 
 	@Override
-	public void handleInput( IGuiMouseState gui )
-	{
-		if ( ( gui.getState() == ButtonState.CLICKED ) )
-		{
+	public void handleInput( IGuiMouseState gui ) {
+		if ( ( gui.getState() == ButtonState.CLICKED ) ) {
 			// Associate lua action file for this guiscreen with the lua engine
 			App.getLua().get( "dofile" ).call( LuaValue.valueOf( resourcePath + "buttonActions.lua" ) );
 

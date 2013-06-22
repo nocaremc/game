@@ -1,16 +1,15 @@
 package nocare.entity;
 
-public class EntityStats
-{
+public class EntityStats {
 	protected float currentHealth;
 	protected float maxHealth;
-	
+
 	protected float currentEnergy;
 	protected float maxEnergy;
-	
+
 	protected int currentLevel;
 	protected float currentExp;
-	
+
 	/*
 	 * Main Stats
 	 */
@@ -20,7 +19,7 @@ public class EntityStats
 	protected float intel;
 	protected float stam;
 	protected float luk;
-	
+
 	/*
 	 * Derivitave Stats
 	 * 	Stats which base value comes from Core stats, but can be modified through items or buffs
@@ -35,7 +34,7 @@ public class EntityStats
 	protected float critModifier = 1.25f;
 	protected float physicalDamage;
 	protected float magicalDamage;
-	
+
 	/*
 	 * Other Stats
 	 */
@@ -43,33 +42,30 @@ public class EntityStats
 	protected float jumpSpeed;
 	protected float moveSpeed;
 	protected float airMoveSpeed;
-	protected boolean onGround=true;
-	
+	protected boolean onGround = true;
+
 	public static final EntityStats playerTemplate = new EntityStats();
-	
+
 	static {
-		playerTemplate.dex=5.0f;
-		playerTemplate.str=5.0f;
-		playerTemplate.intel=5.0f;
-		playerTemplate.wis=5.0f;
-		playerTemplate.luk=5.0f;
-		playerTemplate.stam=5.0f;
-		playerTemplate.jumpHeight=10.0f;
-		playerTemplate.jumpSpeed=1.0f;
-		playerTemplate.moveSpeed=0.02f;//0.12f;
-		playerTemplate.airMoveSpeed=0.09f;
+		playerTemplate.dex = 5.0f;
+		playerTemplate.str = 5.0f;
+		playerTemplate.intel = 5.0f;
+		playerTemplate.wis = 5.0f;
+		playerTemplate.luk = 5.0f;
+		playerTemplate.stam = 5.0f;
+		playerTemplate.jumpHeight = 10.0f;
+		playerTemplate.jumpSpeed = 1.0f;
+		playerTemplate.moveSpeed = 0.02f;//0.12f;
+		playerTemplate.airMoveSpeed = 0.09f;
 	}
 
-	public float getRunSpeed()
-	{
-		if(onGround)
-		{
+	public float getRunSpeed() {
+		if ( onGround ) {
 			return moveSpeed;
 		}
-		else
-		{
+		else {
 			return airMoveSpeed;
 		}
-		
+
 	}
 }

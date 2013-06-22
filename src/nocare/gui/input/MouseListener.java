@@ -10,8 +10,7 @@ import nocare.App;
 import nocare.api.gui.IGuiMouseActions;
 import nocare.gui.Gui;
 
-public class MouseListener
-{
+public class MouseListener {
 	// The Maximum amount of gui's we'll poll for events
 	private static final int pointBuffer = 1024;
 
@@ -24,27 +23,22 @@ public class MouseListener
 	// array of long containing time stamp for last click event handled 
 	long[] lastEventTimeStamp = new long[pointBuffer];
 
-	public void update()
-	{
+	public void update() {
 		// While there are mouse events to read
-		while ( Mouse.next() )
-		{
+		while ( Mouse.next() ) {
 			int mX = Mouse.getX();
 			// Need to flip the y coordinate, because we flipped it for gui display. Seems to do the trick
 			int mY = App.getScreenHeight() - Mouse.getY();
 
 			// Iterate over objects
-			for ( int i = 0; i < guiObjects.size(); i++ )
-			{
+			for ( int i = 0; i < guiObjects.size(); i++ ) {
 				// Check if class implements mouse actions interface
-				if ( guiObjects.get( i ) instanceof IGuiMouseActions )
-				{
+				if ( guiObjects.get( i ) instanceof IGuiMouseActions ) {
 					// Cast object to an interface to gain access to it's functions. Fuck I love java
 					IGuiMouseActions gui = ( IGuiMouseActions ) guiObjects.get( i );
 
 					// If the mouse is within the gui object's bounds
-					if ( gui.isMouseOver( mX, mY ) )
-					{
+					if ( gui.isMouseOver( mX, mY ) ) {
 						// Calculate how much time has passed since the last event was handled, and convert to Milliseconds 
 						long timeSinceLastEvent = ( System.nanoTime() - lastEventTimeStamp[i] ) / 1000000L;
 
@@ -54,8 +48,7 @@ public class MouseListener
 						// Only handle click events if last click happened over 80 milliseconds ago
 						// This is somewhat system dependant, but shouldnt be a problem with gui items.
 						// 10 actions can happen in a second. I can't click that fast
-						if ( timeSinceLastEvent > 100L && button != -1 )
-						{
+						if ( timeSinceLastEvent > 100L && button != -1 ) {
 							// True of clicked, false if released
 							boolean state = Mouse.getEventButtonState();
 
@@ -63,19 +56,16 @@ public class MouseListener
 							lastEventTimeStamp[i] = System.nanoTime();
 
 							// Send state to appropriate object
-							if ( state )
-							{
+							if ( state ) {
 								gui.mouseClicked( button, mX, mY );
 							}
-							else
-							{
+							else {
 								gui.mouseReleased( button, mX, mY );
 							}
 						}
 
 						// Mouse moved, send it to object
-						if ( button == -1 && mousePositionChanged( i ) )
-						{
+						if ( button == -1 && mousePositionChanged( i ) ) {
 							gui.mouseMoved( lastMouseLocation[i].getX(), lastMouseLocation[i].getY(), Mouse.getDX(), -1 * Mouse.getDY() );
 
 							// Set the last point where a move happened
@@ -91,11 +81,9 @@ public class MouseListener
 	 * Add a Gui object to the listener
 	 * @param object
 	 */
-	public void addObject( Gui object )
-	{
+	public void addObject( Gui object ) {
 		// Ensure gui object implements IGuiMouseActions
-		if ( object instanceof IGuiMouseActions )
-		{
+		if ( object instanceof IGuiMouseActions ) {
 			// Add object to objects list
 			guiObjects.add( object );
 
@@ -105,8 +93,7 @@ public class MouseListener
 			// Repeat that wall of text here
 			lastEventTimeStamp[guiObjects.indexOf( object )] = System.nanoTime();
 		}
-		else
-		{
+		else {
 			// Object is not of the correct type. Throw exception and quit
 			IllegalArgumentException e = new IllegalArgumentException();
 			e.printStackTrace();
@@ -114,8 +101,7 @@ public class MouseListener
 		}
 	}
 
-	private boolean mousePositionChanged( int objectIndex )
-	{
+	private boolean mousePositionChanged( int objectIndex ) {
 		return ( Mouse.getX() != lastMouseLocation[objectIndex].getX() && App.getScreenHeight() - Mouse.getY() != lastMouseLocation[objectIndex].getY() );
 	}
 }

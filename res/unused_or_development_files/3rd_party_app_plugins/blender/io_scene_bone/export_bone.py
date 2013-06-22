@@ -82,9 +82,7 @@ def vectorToJSONList(name, vector, isEnd=False):
         returnStr += ",\n"
     else:
         returnStr += "\n"
-    #tabs -=1
-    #t = tab(tabs)
-    #returnStr += (t+"],\n")
+        
     return returnStr
     
 """     Writes bone data to file, splitting away IK's     """
@@ -149,10 +147,7 @@ def writeBoneData(fw, objectMatrix, bone, isEnd=False):
     #fw(t+"matrix : %s\n" % bone.matrix)
 
 
-def write_file(context, filepath, objects, scene,
-        EXPORT_GLOBAL_MATRIX=None,
-        EXPORT_PATH_MODE='AUTO',
-        ):
+def write_file(context, filepath, objects, scene, EXPORT_GLOBAL_MATRIX=None, EXPORT_PATH_MODE='AUTO'):
     global tabs
     
     # Only supporting one armeture object, so clamp
@@ -160,7 +155,6 @@ def write_file(context, filepath, objects, scene,
     # Get position of object relative to world
     positionTrans = object.matrix_world + EXPORT_GLOBAL_MATRIX
     position  = object.location * positionTrans
-    
     
     # Skelaton shouldnt be parented to anything, but the mesh should be to the skelaton.
     # Its a hack to prevent errors if its not an armeture being exported
@@ -204,12 +198,7 @@ def write_file(context, filepath, objects, scene,
     #fw("\n#Finished: %.4f sec" % (time.time() - time_start))
     file.close()
 
-def save(operator, context, filepath="",
-         use_selection=True,
-         global_matrix=None,
-         path_mode='AUTO'
-        ):
-
+def save(operator, context, filepath="", use_selection=True, global_matrix=None, path_mode='AUTO'):
     import time
     global time_start
     time_start = time.time()

@@ -1,7 +1,7 @@
 # ########################################
 #
-#  Blender Bones Exporter
-#  Exports an Armeture in blender
+#  Blender Mesh Exporter
+#  Exports a Mesh in Blender3D
 #
 #  Author: Nocare
 #  Copyright: 2013
@@ -13,27 +13,27 @@
 # ########################################
 
 bl_info ={
-    "name" : "JSON Armature exporter",
+    "name" : "JSON Mesh exporter",
     "author" : "Nocare",
     "blender" : (2,66,0),
     "location" : "File -> Import-Export",
-    "description" : "Export Armature in JSON format",
+    "description" : "Export Mesh in JSON format",
     "warning" : "",
     "category" : "Import-Export"
 }
 
 if "bpy" in locals():
     import imp
-    if "export_bones" in locals():
-        imp.reload(export_bones)
+    if "export_mesh" in locals():
+        imp.reload(export_mesh)
 
 import bpy
 from bpy.props import (BoolProperty, FloatProperty, StringProperty, EnumProperty)
 from bpy_extras.io_utils import (ExportHelper, ImportHelper, path_reference_mode, axis_conversion)
 
-class ExportBone(bpy.types.Operator, ExportHelper):
-    bl_idname = "export_bone.json"
-    bl_label = "Export Bone"
+class ExportMesh(bpy.types.Operator, ExportHelper):
+    bl_idname = "export_mesh.json"
+    bl_label = "Export Mesh"
     bl_options = {'PRESET'}
 
     filename_ext = ".json"
@@ -59,7 +59,7 @@ class ExportBone(bpy.types.Operator, ExportHelper):
                     ('-Y', "-Y Up", ""),
                     ('-Z', "-Z Up", ""),
         ),
-        default='Y',
+        default='Y'
     )
 
     global_scale = FloatProperty(
@@ -75,13 +75,13 @@ class ExportBone(bpy.types.Operator, ExportHelper):
     check_extension = True
 
     def execute(self, context):
-        from . import export_bone
+        from . import export_mesh
         import imp
         import sys
         # Reload module every time this function runs.
         # So that changes dont require Addon enable/disable or blender restarts
-        if sys.modules['io_scene_bone.export_bone']:
-            imp.reload(sys.modules['io_scene_bone.export_bone'])
+        if sys.modules['io_scene_mesh_json.export_mesh']:
+            imp.reload(sys.modules['io_scene_mesh_json.export_mesh'])
 
         from mathutils import Matrix
         keywords = self.as_keywords(
@@ -96,16 +96,16 @@ class ExportBone(bpy.types.Operator, ExportHelper):
 
         global_matrix = (
             global_matrix * axis_conversion(
-                to_forward=self.axis_forward, to_up=self.axis_up,
+                to_forward=self.axis_forward, to_up=self.axis_up
             ).to_4x4()
         )
 
         keywords["global_matrix"] = global_matrix
-        return export_bone.save(self, context, **keywords)
+        return export_mesh.save(self, context, **keywords)
 
 
 def menu_func_export(self, context):
-    self.layout.operator(ExportBone.bl_idname, text="Bones (.json)")
+    self.layout.operator(ExportMesh.bl_idname, text="Mesh (.json)")
 
 def register():
     bpy.utils.register_module(__name__)
